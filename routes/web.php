@@ -31,9 +31,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-// ADMIN ROUTES
-Route::get('admin/dashboard' ,[AdminController::class,'dashboard'])->middleware('auth')->name('admin.dashboard');
+/* ADMIN ROUTES **/
+Route::get('admin/dashboard' ,[AdminController::class,'dashboard'])->middleware(['auth','role:admin'])->name('admin.dashboard');
 
-//VENDOR ROUTES
-Route::get('vendor/dashboard' ,[VendorController::class,'dashboard'])->middleware('auth')->name('vendor.dashboard');
+/* VENDOR ROUTES **/
+Route::get('vendor/dashboard' ,[VendorController::class,'dashboard'])->middleware(['auth','role:vendor'])->name('vendor.dashboard');
 
