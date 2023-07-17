@@ -17,6 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/public/backend/assets/
 /resources/views/admin-template/
 
