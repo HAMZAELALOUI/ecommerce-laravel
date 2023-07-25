@@ -38,4 +38,17 @@ public function updateProfile(Request $request){
     return redirect()->back();
 
 }
+
+  public function updatePassword(Request $request){
+    $request->validate([
+        'current_password'=>['required','current_password'],
+        'password'=>['required','confirmed','min:8'],
+    ]);
+
+    $request->user()->update([
+         'password'=>bcrypt($request->password),
+    ]);
+  toastr()->success('Password Updated Succesfuly');
+    return redirect()->back();
+}   
 }
