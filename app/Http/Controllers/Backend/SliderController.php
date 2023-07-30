@@ -70,8 +70,9 @@ class SliderController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+    {   $slider =new Slider();
+        $sliderId=$slider->id;
+        return view('admin.slider.edite',compact('sliderId'));
     }
 
     /**
