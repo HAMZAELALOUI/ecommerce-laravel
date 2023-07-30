@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
               <label for="">Serial</label>
-              <input type="text" class="form-control" name="serial" value="{{$slider->btn_url}}">
+              <input type="text" class="form-control" name="serial" value="{{$slider->serial}}">
             </div>
             <div class="form-group ">
               <label for="inputeState">Status</label>

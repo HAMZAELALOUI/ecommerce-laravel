@@ -19,9 +19,10 @@ trait ImageUploadTrait{
 
 
     public function UpdateImage(Request $request ,$inputName,$path,$oldPath=null){
+      if($request->hasFile($inputName)){
       if(File::exists(public_path($oldPath))){
         File::delete(public_path($oldPath));
-    }
+    }}
       if($request->has($inputName)){
       $image=$request->{$inputName};
       $ext=$image->getClientOriginalExtension();

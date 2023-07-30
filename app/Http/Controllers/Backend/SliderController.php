@@ -98,7 +98,7 @@ class SliderController extends Controller
          /** handle upload files  */
         $imagePath= $this->UpdateImage($request ,'banner' ,'uploads' ,$slider->banner);
 
-       $slider->banner=$imagePath;
+       $slider->banner=empty(!$imagePath) ? $imagePath : $slider->banner;
        $slider->type=$request->type;
        $slider->title=$request->title;
        $slider->starting_price=$request->starting_price;
