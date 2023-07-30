@@ -20,7 +20,6 @@
           <div class="card-body">
             <form action="{{route('admin.slider.store')}}" method="POST" enctype="multipart/form-data">
               @csrf
-
               <div class="form-group">
                 <label for="">Banner</label>
                 <input type="file" class="form-control" name="banner" >
