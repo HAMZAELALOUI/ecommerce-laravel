@@ -55,7 +55,7 @@ class SliderController extends Controller
        $slider->status=$request->status;
        toastr('Slider Created Succefully' , 'success');
        $slider->save();
-       return redirect()->back(); 
+       return redirect()->route('admin.slider.index')->with('reload', true); 
     
     }
 
@@ -115,6 +115,9 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $slider=Slider::findOrFail($id);
+        $this->deleteImage($slider->banner);
+        $slider->delete();
+        return response(['status'=>'success', 'message' =>'Item Deleted Succefully']);
     }
 }
