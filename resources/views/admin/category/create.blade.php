@@ -22,23 +22,20 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="">
-
+                            <form action="{{ route('admin.category.store') }}" method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <label for="">Icon</label>
                                     <div>
                                         <button class="btn btn-primary" data-search="true" data-search-text="Search..."
-                                            data-unselected-class="btn-primary" role="iconpicker"></button>
+                                            data-unselected-class="btn-primary" role="iconpicker" name="icon"></button>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Name</label>
                                     <input type="text" class="form-control" name="name" value="">
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Slug</label>
-                                    <input type="text" class="form-control" name="slug" value="">
-                                </div>
+
                                 <div class="form-group ">
                                     <label for="inputeState">Status</label>
                                     <select class="form-control" id="inputeState" name="status">

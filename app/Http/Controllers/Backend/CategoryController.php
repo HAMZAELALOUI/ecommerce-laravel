@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\CategoryDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Str;
 
 class CategoryController extends Controller
 {
@@ -29,7 +31,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'icon' => ['required', 'not_in:empty'],
+                'name' => ['required', 'max:200', 'unique:categories,name'],
+                'status' => ['required'],
+            ]
+        );
+        $categories = new Category();
+        $categories->icon = $request->icon;
+        $categories->name = $request->name;
+        $categories->slug = Str::slug($request->name);
+        $categories->status = $request->status;
+        $categories->save();
+        toastr('Ctegorey Created Succefully', 'success');
+        return redirect()->route('admin.category.index');
     }
 
     /**
