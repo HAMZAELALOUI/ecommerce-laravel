@@ -38,6 +38,7 @@
 @push('script')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 @endpush
+
 @if (session('reload'))
     <script>
         // Reload the page
