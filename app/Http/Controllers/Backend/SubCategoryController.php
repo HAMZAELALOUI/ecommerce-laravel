@@ -65,7 +65,7 @@ class SubCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.subcategory.edit');
     }
 
     /**
