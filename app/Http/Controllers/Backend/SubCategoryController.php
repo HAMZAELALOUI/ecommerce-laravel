@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\SubCategoryDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 
 use function Termwind\render;
+use Str;
 
 class SubCategoryController extends Controller
 {
@@ -24,7 +27,8 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.subcategory.create', compact('categories'));
     }
 
     /**
@@ -32,7 +36,20 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category' => ['required'],
+            'name' => ['required', 'max:200', 'unique:sub_categories,name'],
+            'status' => ['required'],
+        ]);
+
+        $subCatgeories = new SubCategory();
+        $subCatgeories->category_id = $request->category;
+        $subCatgeories->name = $request->name;
+        $subCatgeories->slug = Str::slug($request->name);
+        $subCatgeories->status = $request->status;
+        $subCatgeories->save();
+        toastr('sub Category Created Succesfully', 'success');
+        return redirect()->route('admin.sub-category.index');
     }
 
     /**
