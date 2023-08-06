@@ -25,5 +25,5 @@ Route::resource('slider', SliderController::class);
 Route::put('change-status', [CategoryController::class, 'changeStatus'])->name('category.change-status');
 Route::resource('category', CategoryController::class);
 /**  SUBCATEGORY ROUTES */
-Route::put('sub-category/change-status', [CategoryController::class, 'changeStatus'])->name('sub-category.change-status');
+Route::put('sub-category/change-status', [SubCategoryController::class, 'changeStatus'])->name('sub-category.change-status');
 Route::resource('sub-category', SubCategoryController::class);
