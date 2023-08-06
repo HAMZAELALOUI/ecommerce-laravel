@@ -39,12 +39,12 @@
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     <script>
         $(document).ready(function() {
-            $('body').on('click', '.change-status', function() {
+            $('body').on('click', '.sub-ca-change-status', function() {
                 let isChecked = $(this).is(':checked');
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('admin.category.change-status') }}", // Make sure this is a valid Laravel route
+                    url: "{{ route('admin.sub-category.change-status') }}",
                     method: 'PUT',
                     data: {
                         isChecked: isChecked,
