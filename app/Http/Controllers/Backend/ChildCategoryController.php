@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\ChildCategoryDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -25,7 +26,14 @@ class ChildCategoryController extends Controller
     public function create()
     {
         $subCategories = SubCategory::all();
-        return view('admin.childcategory.create', compact('subCategories'));
+        $categories = Category::all();
+        return view('admin.childcategory.create', compact('subCategories', 'categories'));
+    }
+    /**Get Sub Categories data  */
+    public function getSubCategory(Request $request)
+    {
+        $subCategories = SubCategory::where('category_id', $request->id)->where('status', 1)->get();
+        return $subCategories;
     }
 
     /**
@@ -34,12 +42,14 @@ class ChildCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'category' => ['required'],
             'subcategory' => ['required'],
             'name' => ['required', 'max:200', 'unique:child_categories,name'],
             'status' => ['required'],
         ]);
 
         $childCategories = new ChildCategory();
+        $childCategories->category_id = $request->category;
         $childCategories->sub_category_id = $request->subcategory;
         $childCategories->name = $request->name;
         $childCategories->slug = Str::slug($request->name);
@@ -62,9 +72,15 @@ class ChildCategoryController extends Controller
      */
     public function edit(string $id)
     {
+        $categories = Category::all();
         $subCategories = SubCategory::all();
         $childCategories = ChildCategory::findOrFail($id);
-        return view('admin.childcategory.edit', compact('subCategories', 'childCategories'));
+        return view('admin.childcategory.edit', compact('subCategories', 'childCategories', 'categories'));
+    }
+    public function getSubCategoryEdit(Request $request)
+    {
+        $subCategories = SubCategory::where('category_id', $request->id)->where('status', 1)->get();
+        return $subCategories;
     }
 
     /**
@@ -73,12 +89,14 @@ class ChildCategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'category' => ['required'],
             'subcategory' => ['required'],
             'name' => ['required', 'max:200', 'unique:child_categories,name,' . $id],
             'status' => ['required'],
         ]);
 
         $childCategories = ChildCategory::findOrFail($id);
+        $childCategories->category_id = $request->category;
         $childCategories->sub_category_id = $request->subcategory;
         $childCategories->name = $request->name;
         $childCategories->slug = Str::slug($request->name);
@@ -95,7 +113,7 @@ class ChildCategoryController extends Controller
     public function destroy(string $id)
     {
         $childCategories = ChildCategory::findOrFail($id);
-        $childCategories->id;
+        $childCategories->delete();
         return response(['status' => 'success', 'message' => 'Item Deleted Succefully']);
     }
 

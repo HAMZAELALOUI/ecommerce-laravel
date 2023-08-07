@@ -25,12 +25,21 @@
                             <form action="{{ route('admin.child-category.store') }}" method="POST">
                                 @csrf
                                 <div class="form-group ">
-                                    <label for="inputeState"> subCategory</label>
-                                    <select class="form-control" id="inputeState" name="subcategory">
+                                    <label for="inputeState"> Category</label>
+                                    <select class="form-control main-category" id="inputeState" name="category">
                                         <option value="">--Select Category--</option>
-                                        @foreach ($subCategories as $subCategory)
-                                            <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="inputeState"> subCategory</label>
+                                    <select class="form-control sub-category" id="inputeState" name="subcategory">
+                                        <option value="">--Select subCategory--</option>
+                                        {{-- @foreach ($subCategories as $subCategory)
+                                            <option value="{{ $subCategory->id }}">{{ $subCategory->name }}</option>
+                                        @endforeach --}}
                                     </select>
                                 </div>
 
@@ -59,3 +68,34 @@
         </div>
     </section>
 @endsection
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $(document).on('change', '.main-category', function(e) {
+                let id = $(this).val();
+                $.ajax({
+                    method: "GET",
+                    url: "{{ route('admin.get-subcategory') }}",
+                    data: {
+                        id: id,
+                    },
+                    success: function(data) {
+                        $('.sub-category').html(
+                            `<option value="">--Select Sub Category --</option>`)
+                        $.each(data, function(i, item) {
+                            $('.sub-category').append(
+                                `<option value="${item.id}">${item.name}</option>`)
+                        })
+                    },
+                    error: function(xhr, success, error) {
+                        console.log(error)
+                    }
+
+                })
+
+
+
+            });
+        });
+    </script>
+@endpush
