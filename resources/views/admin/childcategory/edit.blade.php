@@ -30,7 +30,8 @@
                                     <select class="form-control  main-category" id="inputeState" name="category">
                                         <option value="">--Select Category--</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option {{ $category->id == $childCategories->category_id ? 'selected' : '' }}
+                                                value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -39,6 +40,12 @@
                                     <label for="inputeState">subCategory</label>
                                     <select class="form-control sub-category" id="inputeState" name="subcategory">
                                         <option value="">--Select Category--</option>
+                                        @foreach ($subCategories as $subCategory)
+                                            <option
+                                                {{ $subCategory->id == $childCategories->sub_category_id ? 'selected' : '' }}
+                                                value="{{ $subCategory->id }}">
+                                                {{ $subCategory->name }}</option>
+                                        @endforeach
 
                                     </select>
                                 </div>

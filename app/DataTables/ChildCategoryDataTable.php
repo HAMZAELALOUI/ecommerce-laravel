@@ -30,9 +30,9 @@ class ChildCategoryDataTable extends DataTable
                     return $editeBtn . $deleteBtn;
                 }
             )
-            // ->addColumn('category', function ($query) {
-            //     return $query->category->name;
-            // })
+            ->addColumn('category', function ($query) {
+                return optional($query->category)->name;
+            })
             ->addColumn('subCategory', function ($query) {
                 return $query->subCategory->name;
             })
@@ -50,7 +50,7 @@ class ChildCategoryDataTable extends DataTable
                 }
                 return $button;
             })
-            ->rawColumns(['action', 'status', 'subCategory'])
+            ->rawColumns(['action', 'status', 'subCategory', 'category'])
             ->setRowId('id');
     }
 
@@ -93,7 +93,7 @@ class ChildCategoryDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('slug'),
-            Column::make('Category'),
+            Column::make('category'),
             Column::make('subCategory'),
             Column::make('status'),
             Column::computed('action')
