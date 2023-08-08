@@ -128,15 +128,21 @@
                                 if (data.status == 'success') {
                                     Swal.fire(
                                         'Deleted!',
-                                        data.message
+                                        data.message,
+                                        'succes'
                                     ).then(() => {
                                         // Reload the page after the user clicks "Ok" on the SweetAlert dialog
                                         window.location.reload();
                                     });
 
-                                } else if (data.status == 'error') {
-                                    " can't delete!",
-                                    data.message
+                                } else if (data.status === 'error') {
+                                    Swal.fire(
+                                        "can't delete!",
+                                        data.message,
+                                        'error'
+                                    )
+
+
                                 }
                             },
                             error: function(xhr, status, error) {
