@@ -41,8 +41,8 @@ class BrandDataTable extends DataTable
                 return $button;
             })
             ->addColumn('is_featured', function ($query) {
-                $active = "<i class='badge badge-success'>Active</i>";
-                $inactive = "<i class='badge badge-danger'>Inactive</i>";
+                $active = "<i class='badge badge-success'>Yes</i>";
+                $inactive = "<i class='badge badge-danger'>No</i>";
                 return $query->status == 1 ? $active : $inactive;
             })
             ->addColumn('action', function ($query) {

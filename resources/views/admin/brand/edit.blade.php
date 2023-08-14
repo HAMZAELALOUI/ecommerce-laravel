@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Slider</h1>
+            <h1>Brand</h1>
 
         </div>
 
@@ -12,55 +12,44 @@
             <div class="row">
                 <div class="col-12 ">
                     <div class="card">
+
                         <div class="card-header">
-                            <h4>Update Slider </h4>
+                            <h4>Update Brand </h4>
                             <div class="card-header-action">
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.slider.update', $slider->id) }}" method="POST"
+                            <form action="{{ route('admin.brand.update', $brand) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
                                     <label for="">Preview</label>
                                     <br>
-                                    <img src="{{ asset($slider->banner) }}" alt="" width="200px">
+                                    <img src="{{ asset($brand->logo) }}" alt="" width="200px">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Banner</label>
-                                    <input type="file" class="form-control" name="banner">
+                                    <label for="">Logo</label>
+                                    <input type="file" class="form-control" name="logo">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Type</label>
-                                    <input type="text" class="form-control" name="type" value="{{ $slider->type }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="">Title</label>
-                                    <input type="text" class="form-control" name="title" value="{{ $slider->title }}">
+                                    <label for="">Name</label>
+                                    <input type="text" class="form-control" name="name" value="{{ $brand->name }}"">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="">Starting Price</label>
-                                    <input type="text" class="form-control" name="starting_price"
-                                        value="{{ $slider->starting_price }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Button Url</label>
-                                    <input type="text" class="form-control" name="btn_url"
-                                        value="{{ $slider->btn_url }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Serial</label>
-                                    <input type="text" class="form-control" name="serial" value="{{ $slider->serial }}">
+                                    <label for="inputeState">Is Featured</label>
+                                    <select class="form-control" id="inputeState" name="is_featured">
+                                        <option {{ $brand->is_featured == 1 ? 'selected' : '' }} value="1">Yes</option>
+                                        <option {{ $brand->is_featured == 0 ? 'selected' : '' }} value="0">No</option>
+                                    </select>
+
                                 </div>
                                 <div class="form-group ">
                                     <label for="inputeState">Status</label>
                                     <select class="form-control" id="inputeState" name="status">
-                                        <option {{ $slider->status == 1 ? 'selected' : '' }} value="1">Active</option>
-                                        <option {{ $slider->status == 0 ? 'selected' : '' }} value="0">inactive
-                                        </option>
+                                        <option {{ $brand->status == 1 ? 'selected' : '' }} value="1">Active</option>
+                                        <option {{ $brand->status == 0 ? 'selected' : '' }} value="0">inactive</option>
                                     </select>
 
                                 </div>
