@@ -18,42 +18,49 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin.vendor-profile.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
+                                <div class="form-group">
+                                    <label for="">Preview</label> <br>
+                                    <img width="200" src="{{ asset($vendor->banner) }}" alt="">
+                                </div>
                                 <div class="form-group">
                                     <label for="">Banner</label>
                                     <input type="file" class="form-control" name="banner">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Phone</label>
-                                    <input type="text" class="form-control" name="email" value="{{ old('phone') }}">
+                                    <input type="text" class="form-control" name="phone" value="{{ $vendor->phone }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Email</label>
-                                    <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                                    <input type="text" class="form-control" name="email" value="{{ $vendor->email }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="">Adress</label>
-                                    <input type="text" class="form-control" name="adress" value="{{ old('adress') }}">
+                                    <input type="text" class="form-control" name="adress" value="{{ $vendor->Adress }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Descreption</label>
-                                    <textarea class="summernote" name="description" value="{{ old('description') }}"></textarea>
+                                    <textarea class="summernote" name="description">{{ $vendor->description }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Facebook</label>
-                                    <input type="text" class="form-control" name="fb_link" value="{{ old('fb_link') }}">
+                                    <input type="text" class="form-control" name="fb_link"
+                                        value="{{ $vendor->fb_link }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Twitter</label>
-                                    <input type="text" class="form-control" name="tw_link" value="{{ old('tw_link') }}">
+                                    <input type="text" class="form-control" name="tw_link"
+                                        value="{{ $vendor->tw_link }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Instagram</label>
                                     <input type="text" class="form-control" name="insta_link"
-                                        value="{{ old('insta_link') }}">
+                                        value="{{ $vendor->insta_link }}">
                                 </div>
 
                                 <Button type="submit" class="btn btn-primary">Update</Button>
