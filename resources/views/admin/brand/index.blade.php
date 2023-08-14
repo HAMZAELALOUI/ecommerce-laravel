@@ -44,7 +44,7 @@
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('admin.category.change-status') }}", // Make sure this is a valid Laravel route
+                    url: "{{ route('admin.brand.change-status') }}", // Make sure this is a valid Laravel route
                     method: 'PUT',
                     data: {
                         isChecked: isChecked,

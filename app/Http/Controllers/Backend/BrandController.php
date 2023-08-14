@@ -108,4 +108,11 @@ class BrandController extends Controller
         $brand->delete();
         return response(['status' => 'success', 'message' => 'Item Deleted Succefully']);
     }
+    function changeStatus(Request $request)
+    {
+        $brand = Brand::findOrFail($request->id);
+        $brand->status = $request->isChecked == 'true' ? 1 : 0;
+        $brand->save();
+        return response(['status' => 'success', 'message' => 'Status has been updated']);
+    }
 }
