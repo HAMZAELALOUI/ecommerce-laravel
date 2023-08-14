@@ -45,7 +45,7 @@ class BrandController extends Controller
 
         $imagePath = $this->UploadImage($request, 'logo', 'uploads');
         $brand = new Brand();
-        $brand->logo = $request->logo;
+        $brand->logo = $imagePath;
         $brand->name = $request->name;
         $brand->slug = Str::slug($request->name);
         $brand->is_featured = $request->is_featured;

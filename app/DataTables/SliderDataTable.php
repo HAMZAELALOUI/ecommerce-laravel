@@ -22,21 +22,21 @@ class SliderDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action',function($query){
-                $editeBtn = "<a  href='".route('admin.slider.edit' ,$query->id)."' class='btn btn-primary'><i class='fas fa-edit'></i></a>"; 
-                $deleteBtn = "<a  href='".route('admin.slider.destroy' ,$query->id)."' class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash-alt'></i></a>"; 
-               return $editeBtn.$deleteBtn;
+            ->addColumn('action', function ($query) {
+                $editeBtn = "<a  href='" . route('admin.slider.edit', $query->id) . "' class='btn btn-primary'><i class='fas fa-edit'></i></a>";
+                $deleteBtn = "<a  href='" . route('admin.slider.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                return $editeBtn . $deleteBtn;
+            })
+            ->addColumn('banner', function ($query) {
 
+                return "<img width='100px' src='" . asset($query->banner) . "'></img>";
             })
-            ->addColumn('banner', function($query){
-                return "<img width='100px' src='".asset($query->banner)."'></img>"; 
+            ->addColumn('status', function ($query) {
+                $active = "<i class='badge badge-success'>Active</i>";
+                $inactive = "<i class='badge badge-danger'>Inactive</i>";
+                return $query->status == 1 ? $active : $inactive;
             })
-            ->addColumn('status', function($query){
-                $active= "<i class='badge badge-success'>Active</i>"; 
-                $inactive= "<i class='badge badge-danger'>Inactive</i>"; 
-                return $query->status == 1 ? $active :$inactive;
-            })
-            ->rawColumns(['banner','action','status'])
+            ->rawColumns(['banner', 'action', 'status'])
             ->setRowId('id');
     }
 
@@ -54,20 +54,20 @@ class SliderDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('slider-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('slider-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -82,11 +82,11 @@ class SliderDataTable extends DataTable
             Column::make('serial'),
             Column::make('status'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(200)
-                  ->addClass('text-center'),
-        
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
+
         ];
     }
 
