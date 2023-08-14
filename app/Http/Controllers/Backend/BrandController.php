@@ -102,6 +102,10 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+        $brand = Brand::findOrFail($id);
+        $this->deleteImage($brand->logo);
+        $brand->delete();
+        return response(['status' => 'success', 'message' => 'Item Deleted Succefully']);
     }
 }
