@@ -116,47 +116,31 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group ">
-                                            <label for="inputeState">Is Top?</label>
-                                            <select class="form-control" id="inputeState" name="is_top">
-                                                <option value="">Select</option>
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group ">
-                                            <label for="inputeState">Is Best?</label>
-                                            <select class="form-control" id="inputeState" name="is_best">
-                                                <option value="">Select</option>
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group ">
-                                            <label for="inputeState">Is Featured?</label>
-                                            <select class="form-control" id="inputeState" name="is_featured">
-                                                <option value="">Select</option>
-                                                <option value="1">Yes</option>
-                                                <option value="0">No</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group ">
-                                            <label for="inputeState">Status</label>
-                                            <select class="form-control" id="inputeState" name="status">
-                                                <option value="1">Active</option>
-                                                <option value="0">inactive</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
+
+                                <div class="form-group ">
+                                    <label for="inputeState">Product Type</label>
+                                    <select class="form-control" id="inputeState" name="product_type">
+                                        <option value="0">Select</option>
+                                        <option value="new_arrival">New Arrival</option>
+                                        <option value="featured_product">Featured</option>
+                                        <option value="top_product">Top Product</option>
+                                        <option value="best_product">Best Product</option>
+                                    </select>
                                 </div>
+
+
+
+
+                                <div class="form-group ">
+                                    <label for="inputeState">Status</label>
+                                    <select class="form-control" id="inputeState" name="status">
+                                        <option value="1">Active</option>
+                                        <option value="0">inactive</option>
+                                    </select>
+                                </div>
+
+
 
                                 <div class="form-group">
                                     <label for="">SEO Title</label>
