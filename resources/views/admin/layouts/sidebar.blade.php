@@ -32,7 +32,9 @@
                     <span>Manage Products</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
-                            href="{{ route('admin.brand.index') }}">Brand</a></li>
+                            href="{{ route('admin.brand.index') }}">Brands</a></li>
+                    <li class="{{ setActive(['admin.brand.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.product.index') }}">Products</a></li>
                 </ul>
             </li>
             <li class="dropdown {{ setActive(['admin.slider.*']) }}">
