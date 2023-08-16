@@ -30,7 +30,8 @@ class ProductDataTable extends DataTable
                 <i class="fas fa-cogs"></i>
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i> Action</a>
+                  <a href="' . route("admin.product-image-gallery.index") . '" class="dropdown-item has-icon" ><i class="far fa-heart"></i> Image</a>
+
                   <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> Another action</a>
                   <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> Something else here</a>
                 </div>

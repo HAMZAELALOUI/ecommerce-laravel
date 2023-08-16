@@ -33,6 +33,8 @@
                                         <div class="form-group ">
                                             <label for="inputeState">Category</label>
                                             <select class="form-control main-category" id="inputeState" name="category">
+                                                <option value="">Select</option>
+
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
