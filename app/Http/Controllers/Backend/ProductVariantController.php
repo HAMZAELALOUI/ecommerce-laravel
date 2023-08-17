@@ -81,7 +81,6 @@ class ProductVariantController extends Controller
         $variant->name = $request->name;
         $variant->save();
         toastr('Variant Upfated Successfully !!');
-        // return redirect()->route('admin.product-variant.index');
         return redirect()->route('admin.product-variant.index', ['product' => $variant->product_id]);
     }
 
@@ -90,6 +89,16 @@ class ProductVariantController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $variant = ProductVariant::findOrFail($id);
+        $variant->delete();
+        return response(['status' => 'success', 'message' => 'variant Deleted Successfully']);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $variant = ProductVariant::findOrFail($request->id);
+        $variant->status = $request->isChecked == 'true' ? 1 : 0;
+        $variant->save();
+        return response(['status' => 'success', 'message' => 'Status has been updated']);
     }
 }

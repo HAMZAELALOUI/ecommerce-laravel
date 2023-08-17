@@ -31,12 +31,12 @@ class ProductVariantDataTable extends DataTable
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
-            <input  data-id="' . $query->id . '"  type="checkbox"   checked name="custom-switch-checkbox" class="custom-switch-input sub-ca-change-status">
+            <input  data-id="' . $query->id . '"  type="checkbox"   checked name="custom-switch-checkbox" class="custom-switch-input variant-change-status">
             <span class="custom-switch-indicator"></span>
             </label>';
                 } else {
                     $button = '<label class="custom-switch mt-2">
-            <input data-id="' . $query->id . '" type="checkbox"  name="custom-switch-checkbox" class="custom-switch-input sub-ca-change-status">
+            <input data-id="' . $query->id . '" type="checkbox"  name="custom-switch-checkbox" class="custom-switch-input variant-change-status">
             <span class="custom-switch-indicator"></span>
             </label>';
                 }

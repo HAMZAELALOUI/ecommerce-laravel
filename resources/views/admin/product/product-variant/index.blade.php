@@ -41,7 +41,32 @@
 @endsection
 @push('script')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+
+    <script>
+        $(document).ready(function() {
+            $('body').on('click', '.variant-change-status', function() {
+                let isChecked = $(this).is(':checked');
+                let id = $(this).data('id');
+
+                $.ajax({
+                    url: "{{ route('admin.product-variant.change-status') }}",
+                    method: 'PUT',
+                    data: {
+                        isChecked: isChecked,
+                        id: id
+                    },
+                    success: function(data) {
+                        toastr.success(data.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
 @endpush
+
 @if (session('reload'))
     <script>
         // Reload the page
