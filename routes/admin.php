@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductVariantController;
+use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\ProductVariantController as ControllersProductVariantController;
 use App\Http\Controllers\VendorAdminProfileController;
 use App\Models\Product;
@@ -63,3 +64,6 @@ Route::resource('product-image-gallery', ImageProductGalleryController::class);
 /** Product Variant */
 Route::put('product-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('product-variant.change-status');
 Route::resource('product-variant', ProductVariantController::class);
+
+/**Product Variant Item Routes */
+Route::get('product-variant-item/{productID}/{variantID}', [ProductVariantItemController::class, 'index'])->name('product-variant-item.index');
