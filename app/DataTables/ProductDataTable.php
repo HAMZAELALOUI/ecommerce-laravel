@@ -32,7 +32,7 @@ class ProductDataTable extends DataTable
                 <div class="dropdown-menu">
                   <a href="' . route("admin.product-image-gallery.index", ['product' => $query->id]) . '" class="dropdown-item has-icon" ><i class="far fa-heart"></i> Image Gallery</a>
 
-                  <a class="dropdown-item has-icon" href="#"><i class="far fa-file"></i> Another action</a>
+                  <a class="dropdown-item has-icon" href="' . route('admin.product-variant.index') . '"><i class="far fa-file"></i> Variants</a>
                   <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> Something else here</a>
                 </div>
               </div>';
