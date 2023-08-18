@@ -6,6 +6,7 @@ use App\DataTables\ProdauctVariantItemDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\ProductVariantItem;
 use Illuminate\Http\Request;
 
 class ProductVariantItemController extends Controller
@@ -15,5 +16,33 @@ class ProductVariantItemController extends Controller
         $variant = ProductVariant::findOrFail($variantID);
         $product = Product::findOrFail($productID);
         return $dataTable->render('admin.product.product-variant-items.index', compact('variant', 'product'));
+    }
+    public function create(string $productID, string $variantID)
+    {
+        $variant = ProductVariant::findOrFail($variantID);
+        $product = Product::findOrFail($productID);
+
+        return view('admin.product.product-variant-items.create', compact('variant', 'product'));
+    }
+    public function store(Request $request)
+    {
+        // return dd($request->all());
+        $request->validate([
+            'variant_id' => ['required', 'integer'],
+            'name' => ['required', 'max:200'],
+            'price' => ['required'],
+            'is_default' => ['required'],
+            'status' => ['required'],
+        ]);
+
+        $variantItem = new ProductVariantItem();
+        $variantItem->variant_id = $request->variant_id;
+        $variantItem->name = $request->name;
+        $variantItem->price = $request->price;
+        $variantItem->is_default = $request->is_default;
+        $variantItem->status = $request->status;
+        $variantItem->save();
+        toastr('Items Created Successfully ', 'success', 'success');
+        return redirect()->route('admin.product-variant-item.index', ['productID' => request()->product_id, 'variantID' => request()->variant_id]);
     }
 }

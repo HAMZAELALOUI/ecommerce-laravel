@@ -67,3 +67,5 @@ Route::resource('product-variant', ProductVariantController::class);
 
 /**Product Variant Item Routes */
 Route::get('product-variant-item/{productID}/{variantID}', [ProductVariantItemController::class, 'index'])->name('product-variant-item.index');
+Route::get('product-variant-item/create/{productID}/{variantID}', [ProductVariantItemController::class, 'create'])->name('product-variant-item.create');
+Route::post('product-variant-item', [ProductVariantItemController::class, 'store'])->name('product-variant-item.store');

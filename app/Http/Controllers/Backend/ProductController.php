@@ -22,6 +22,7 @@ class ProductController extends Controller
      */
     public function index(ProductDataTable $dataTable)
     {
+        // $product = Product::findOrFail($productId);
         return $dataTable->render('admin.product.index');
     }
 
