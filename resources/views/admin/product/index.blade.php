@@ -44,12 +44,12 @@
 
     <script>
         $(document).ready(function() {
-            $('body').on('click', '.variant-change-status', function() {
+            $('body').on('click', '.change-status', function() {
                 let isChecked = $(this).is(':checked');
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('admin.product-variant.change-status') }}",
+                    url: "{{ route('admin.product.change-status') }}",
                     method: 'PUT',
                     data: {
                         isChecked: isChecked,

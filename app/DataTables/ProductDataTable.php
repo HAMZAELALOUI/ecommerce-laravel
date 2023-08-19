@@ -33,7 +33,6 @@ class ProductDataTable extends DataTable
                   <a href="' . route("admin.product-image-gallery.index", ['product' => $query->id]) . '" class="dropdown-item has-icon" ><i class="far fa-heart"></i> Image Gallery</a>
 
                   <a class="dropdown-item has-icon" href="' . route('admin.product-variant.index', ['product' => $query->id]) . '"><i class="far fa-file"></i> Variants</a>
-                  <a class="dropdown-item has-icon" href="#"><i class="far fa-clock"></i> Something else here</a>
                 </div>
               </div>';
                 return $editeBtn . $deleteBtn . $moreBtn;
@@ -64,12 +63,12 @@ class ProductDataTable extends DataTable
             ->addColumn('status',  function ($query) {
                 if ($query->status == 1) {
                     $button = '<label class="custom-switch mt-2">
-            <input  data-id="' . $query->id . '"  type="checkbox"   checked name="custom-switch-checkbox" class="custom-switch-input sub-ca-change-status">
+            <input  data-id="' . $query->id . '"  type="checkbox"   checked name="custom-switch-checkbox" class="custom-switch-input change-status">
             <span class="custom-switch-indicator"></span>
             </label>';
                 } else {
                     $button = '<label class="custom-switch mt-2">
-            <input data-id="' . $query->id . '" type="checkbox"  name="custom-switch-checkbox" class="custom-switch-input sub-ca-change-status">
+            <input data-id="' . $query->id . '" type="checkbox"  name="custom-switch-checkbox" class="custom-switch-input change-status">
             <span class="custom-switch-indicator"></span>
             </label>';
                 }
