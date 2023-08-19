@@ -75,4 +75,19 @@ class ProductVariantItemController extends Controller
         toastr('Items Updated Successfully ', 'success', 'success');
         return redirect()->route('admin.product-variant-item.index', ['productID' =>  $variantItem->variant->product_id, 'variantID' => $variantItem->variant_id]);
     }
+
+    public function destroy(string $variantItemID)
+    {
+        $variantItem = ProductVariantItem::findOrFail($variantItemID);
+        $variantItem->delete();
+        return response(['status' => 'success', 'message' => 'variant Item Deleted Successfully']);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $variantItem = ProductVariantItem::findOrFail($request->id);
+        $variantItem->status = $request->isChecked == 'true' ? 1 : 0;
+        $variantItem->save();
+        return response(['status' => 'success', 'message' =>  $variantItem->name . ' variant item status has been updated']);
+    }
 }
