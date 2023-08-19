@@ -6,6 +6,7 @@ use App\DataTables\ProductVariantDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariant;
+use App\Models\ProductVariantItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -90,6 +91,10 @@ class ProductVariantController extends Controller
     public function destroy(string $id)
     {
         $variant = ProductVariant::findOrFail($id);
+        $checkVariantItem = ProductVariantItem::where('variant_id', $variant->id)->count();
+        if ($checkVariantItem > 0) {
+            return response(['status' => 'error', 'message' => "you can't delete the " . $variant->name . ', Is not Empty ,Delete the items first']);
+        }
         $variant->delete();
         return response(['status' => 'success', 'message' => 'variant Deleted Successfully']);
     }
