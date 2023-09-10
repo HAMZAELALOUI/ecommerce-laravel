@@ -17,6 +17,7 @@ class VendorProfileSeeder extends Seeder
         $user = User::where('email', 'admin@gmail.com')->first();
         $vendor = new Vendor();
         $vendor->banner = 'uploads/123.jpg';
+        $vendor->shop_name = 'Admin Shop';
         $vendor->phone = '0625584855';
         $vendor->email = 'admin@gmail.com';
         $vendor->adress = 'Morocco';

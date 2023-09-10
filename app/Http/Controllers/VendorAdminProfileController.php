@@ -34,6 +34,7 @@ class VendorAdminProfileController extends Controller
     {
         $request->validate([
             'banner' => ['image', 'max:3000', 'nullable'],
+            'shop_name' => ['required', 'max:200'],
             'phone' => ['required', 'max:50'],
             'email' => ['email', 'required', 'max:50'],
             'adress' => ['required',],
@@ -46,6 +47,7 @@ class VendorAdminProfileController extends Controller
         $vendor = Vendor::where('user_id', Auth::user()->id)->first();
         $bannerPath = $this->UpdateImage($request, 'banner', 'uploads', $vendor->banner);
         $vendor->banner = empty(!$bannerPath) ? $bannerPath : $vendor->banner;
+        $vendor->shop_name = $request->shop_name;
         $vendor->phone = $request->phone;
         $vendor->email = $request->email;
         $vendor->adress = $request->adress;

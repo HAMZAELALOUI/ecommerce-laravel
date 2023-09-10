@@ -3,8 +3,8 @@
 
 @section('content')
     <!--=============================
-                                        DASHBOARD START
-                                      ==============================-->
+                                                                        DASHBOARD START
+                                                                      ==============================-->
     <section id="wsus__dashboard">
 
         @include('vendor.layouts.sidebar')
@@ -15,46 +15,52 @@
                     <div class="wsus__dashboard_profile">
                         <div class="wsus__dash_pro_area">
 
-                            <form action="" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('vendor.shop-profile.store') }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Preview</label> <br>
                                     <img width="200" src="{{ asset($profile->banner) }}" alt="">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Banner</label>
                                     <input type="file" class="form-control" name="banner">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
+                                    <label for="">Shop Name</label>
+                                    <input type="text" class="form-control" name="shop_name"
+                                        value="{{ $profile->shop_name }}">
+                                </div>
+                                <div class="form-group wsus__input">
                                     <label for="">Phone</label>
                                     <input type="text" class="form-control" name="phone" value="{{ $profile->phone }}">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Email</label>
                                     <input type="text" class="form-control" name="email" value="{{ $profile->email }}">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Adress</label>
                                     <input type="text" class="form-control" name="adress"
                                         value="{{ $profile->Adress }}">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Descreption</label>
                                     <textarea class="summernote" name="description">{{ $profile->description }}</textarea>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Facebook</label>
                                     <input type="text" class="form-control" name="fb_link"
                                         value="{{ $profile->fb_link }}">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Twitter</label>
                                     <input type="text" class="form-control" name="tw_link"
                                         value="{{ $profile->tw_link }}">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group wsus__input">
                                     <label for="">Instagram</label>
                                     <input type="text" class="form-control" name="insta_link"
                                         value="{{ $profile->insta_link }}">
@@ -70,6 +76,6 @@
         </div>
     </section>
     <!--=============================
-                                        DASHBOARD START
-                                      ==============================-->
+                                                                        DASHBOARD START
+                                                                      ==============================-->
 @endsection
