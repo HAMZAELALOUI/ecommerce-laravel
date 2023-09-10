@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\DataTables\ProductVariantDataTable;
+use App\Http\Controllers\Controller;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ProductVariantController extends Controller
+class VendorShopPeofileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductVariantDataTable $dataTable)
+    public function index()
     {
-        $dataTable->render('admin.product-variant.index');
+        $profile = Vendor::where('user_id', Auth::user()->id)->first();
+        return view('vendor.shop-profile.index', compact('profile'));
     }
 
     /**
