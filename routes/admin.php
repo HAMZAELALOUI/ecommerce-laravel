@@ -11,7 +11,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
-use App\Http\Controllers\ProductVariantController as ControllersProductVariantController;
+// use App\Http\Controllers\ProductVariantController as ControllersProductVariantController;
 use App\Http\Controllers\VendorAdminProfileController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
