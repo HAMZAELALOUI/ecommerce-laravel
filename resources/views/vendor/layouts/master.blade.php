@@ -109,10 +109,12 @@
     <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
     <!--classycountdown js-->
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
-    <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script> --}}
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
     <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
@@ -139,6 +141,10 @@
             },
             singleDatePicker: true
         })
+    </script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        var jQuery2 = jQuery.noConflict(true);
     </script>
 
     @stack('scripts')

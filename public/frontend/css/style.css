@@ -9439,3 +9439,8 @@ a:not([href]):not([class]):hover {
     text-align: right;
     margin-bottom: 10px;
 }
+
+#flexSwitchCheckChecked {
+    height: 20px !important;
+    width: 50px !important;
+}
