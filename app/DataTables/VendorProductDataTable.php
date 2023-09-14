@@ -25,16 +25,25 @@ class VendorProductDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $editeBtn = "<a  href='" . route('vendor.products.edit', $query->id) . "' class='btn btn-primary'><i class='fas fa-edit'></i></a>";
-                $deleteBtn = "<a  href='" . route('vendor.products.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
-                $moreBtn = '<div class="dropdown ml-1 dropleft d-inline">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                $deleteBtn = "<a  href='" . route('vendor.products.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item' style='margin-left:3px'><i class='fas fa-trash-alt'></i></a>";
+                // $moreBtn = '<div class="dropdown ml-1 dropleft d-inline">
+                //     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                //     <i class="fas fa-cogs"></i>
+                //     </button>
+                //     <div class="dropdown-menu">
+                //       <a href="' . route("admin.product-image-gallery.index", ['product' => $query->id]) . '" class="dropdown-item has-icon" ><i class="far fa-heart"></i> Image Gallery</a>
+
+                //       <a class="dropdown-item has-icon" href="' . route('vendor.products.index', ['product' => $query->id]) . '"><i class="far fa-file"></i> Variants</a>
+                //     </div>
+                //   </div>';
+                $moreBtn = '<div class="btn-group dropstart " style="margin-left:3px">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fas fa-cogs"></i>
                 </button>
-                <div class="dropdown-menu">
-                  <a href="' . route("admin.product-image-gallery.index", ['product' => $query->id]) . '" class="dropdown-item has-icon" ><i class="far fa-heart"></i> Image Gallery</a>
-
-                  <a class="dropdown-item has-icon" href="' . route('vendor.products.index', ['product' => $query->id]) . '"><i class="far fa-file"></i> Variants</a>
-                </div>
+                <ul class="dropdown-menu">
+                <li> <a href="' . route("vendor.product-image-gallery.index", ['product' => $query->id]) . '" class="dropdown-item has-icon" > Image Gallery</a></li> 
+                <li> <a class="dropdown-item has-icon" href="' . route('vendor.products.index', ['product' => $query->id]) . '"> Variants</a></li> 
+                </ul>
               </div>';
                 return $editeBtn . $deleteBtn . $moreBtn;
             })
@@ -63,11 +72,11 @@ class VendorProductDataTable extends DataTable
             })
             ->addColumn('status',  function ($query) {
                 if ($query->status == 1) {
-                    $button = '<div class="form-check form-switch" >
+                    $button = '<div class="form-check form-switch" style="width:100px" >
                            <input class="form-check-input change-status " type="checkbox" id="flexSwitchCheckChecked"  data-id="' . $query->id . '"  >
                             </div>';
                 } else {
-                    $button = '<div class="form-check form-switch">
+                    $button = '<div class="form-check form-switch" style="width:100px">
                                <input class="form-check-input change-status" type="checkbox" id="flexSwitchCheckChecked"   data-id="' . $query->id . '" >
                                </div>';
                 }
