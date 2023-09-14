@@ -98,6 +98,11 @@ class VendorProductController extends Controller
     public function edit(string $id)
     {
         $products = Product::findOrFail($id);
+        /** checj if the owner of the product  */
+        if ($products->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
+
         $categories = Category::all();
         $subCategories = SubCategory::all();
         $childCategories = ChildCategory::all();
@@ -123,7 +128,14 @@ class VendorProductController extends Controller
             'seo_description' => ['nullable', 'max:250'],
             'status' => ['required'],
         ]);
+
         $product = Product::findOrFail($id);
+        /** checj if the owner of the product  */
+        if ($product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
+
+
         $imagePath = $this->UpdateImage($request, 'image', 'uploads', $product->thumb_image);
         $product->thumb_image = empty(!$imagePath) ? $imagePath : $product->thumb_image;
         $product->name = $request->name;
