@@ -1,21 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
-use App\DataTables\ProductVariantDataTable;
-use App\Http\Controllers\Controller;
+use App\DataTables\VendorProductVariantDataTable;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ProductVariantController extends Controller
+class VendorProductVarinatController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductVariantDataTable $dataTable, Request $request)
+    public function index(Request $request, VendorProductVariantDataTable $dtataTable)
     {
         $product = Product::findOrFail($request->product);
-        return  $dataTable->render('admin.product.product-variant.index', compact('product'));
+        return $dtataTable->render('vendor.products.product-variant.index', compact('product'));
     }
 
     /**
@@ -23,7 +22,7 @@ class ProductVariantController extends Controller
      */
     public function create()
     {
-        return view('admin.product.product-variant.create');
+        //
     }
 
     /**

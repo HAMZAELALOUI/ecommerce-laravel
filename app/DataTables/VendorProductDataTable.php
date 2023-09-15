@@ -32,7 +32,7 @@ class VendorProductDataTable extends DataTable
                 </button>
                 <ul class="dropdown-menu">
                 <li> <a href="' . route("vendor.product-image-gallery.index", ['product' => $query->id]) . '" class="dropdown-item has-icon" > Image Gallery</a></li> 
-                <li> <a class="dropdown-item has-icon" href="' . route('vendor.products.index', ['product' => $query->id]) . '"> Variants</a></li> 
+                <li> <a class="dropdown-item has-icon" href="' . route('vendor.product-variant.index', ['product' => $query->id]) . '"> Variants</a></li> 
                 </ul>
               </div>';
                 return $editeBtn . $deleteBtn . $moreBtn;
