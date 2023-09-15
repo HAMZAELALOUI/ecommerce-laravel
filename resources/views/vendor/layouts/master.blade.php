@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>One Shop || e-Commerce HTML Template</title>
     <link rel="icon" type="image/png" href="{{ asset('frontend/images/favicon.png') }}">
@@ -117,6 +119,8 @@
 
     <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
     <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 
@@ -145,6 +149,61 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script>
         var jQuery2 = jQuery.noConflict(true);
+    </script>
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('body').on('click', '.delete-item', function(e) {
+                e.preventDefault()
+                let deleteUrl = $(this).attr('href')
+
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'DELETE',
+                            url: deleteUrl,
+                            success: function(data) {
+                                if (data.status == 'success') {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        data.message,
+                                        'succes'
+                                    ).then(() => {
+                                        // Reload the page after the user clicks "Ok" on the SweetAlert dialog
+                                        window.location.reload();
+                                    });
+
+                                } else if (data.status === 'error') {
+                                    Swal.fire(
+                                        "can't delete!",
+                                        data.message,
+                                        'error'
+                                    )
+
+
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            },
+                        })
+
+                    }
+                })
+            })
+        })
     </script>
 
     @stack('scripts')

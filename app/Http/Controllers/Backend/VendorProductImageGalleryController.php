@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\DataTables\VendorProductImageGalleryDataTable;
 use App\Http\Controllers\Controller;
+use App\Models\ImageProductGallery;
 use App\Models\Product;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class VendorProductImageGalleryController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +35,19 @@ class VendorProductImageGalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image.*' => ['required', 'max:2048'],
+        ]);
+        $imagePaths = $this->UploadMultiImage($request, 'image', 'uploads');
+
+        foreach ($imagePaths as $imagePath) {
+            $imageGallery = new ImageProductGallery();
+            $imageGallery->image = $imagePath;
+            $imageGallery->product_id = $request->product;
+            $imageGallery->save();
+        }
+        toastr('Images created Succefully');
+        return redirect()->back();
     }
 
     /**
@@ -64,6 +79,9 @@ class VendorProductImageGalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $productImage = ImageProductGallery::findOrFail($id);
+        $this->deleteImage($productImage->image);
+        $productImage->delete();
+        return response(['status' => 'success', 'message' => 'Image Deleted Succefully']);
     }
 }
