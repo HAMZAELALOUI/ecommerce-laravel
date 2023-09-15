@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DataTables\VendorProductVariantDataTable;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 
 class VendorProductVarinatController extends Controller
@@ -22,7 +23,7 @@ class VendorProductVarinatController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendor.products.product-variant.create', compact('product'));
     }
 
     /**
@@ -30,7 +31,21 @@ class VendorProductVarinatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'product' => ['required', 'integer'],
+            'name' => ['required', 'max:50'],
+            'status' => ['required'],
+        ]);
+
+        $variant = new ProductVariant();
+        $variant->product_id = $request->product;
+        $variant->name = $request->name;
+        $variant->status = $request->status;
+        $variant->save();
+
+        toastr('Created Succefully!!', 'success', 'success');
+        return redirect()->route('vendor.product-variant.index', ['product' => $request->product]);
     }
 
     /**

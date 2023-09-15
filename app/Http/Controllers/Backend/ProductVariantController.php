@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\ProductVariantDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 
 class ProductVariantController extends Controller
@@ -31,7 +32,21 @@ class ProductVariantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'product' => ['required', 'integer'],
+            'name' => ['required', 'max:50'],
+            'status' => ['required'],
+        ]);
+
+        $variant = new ProductVariant();
+        $variant->product_id = $request->product;
+        $variant->name = $request->name;
+        $variant->status = $request->status;
+        $variant->save();
+
+        toastr('Created Succefully!!', 'success', 'success');
+        return redirect()->route('admin.product-variant.index', ['product' => $request->product]);
     }
 
     /**
