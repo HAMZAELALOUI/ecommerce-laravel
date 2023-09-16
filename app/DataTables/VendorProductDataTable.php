@@ -40,10 +40,17 @@ class VendorProductDataTable extends DataTable
             ->addColumn('image', function ($query) {
                 return "<img width='50px' src='" . asset($query->thumb_image) . "'></img>";
             })
+            ->addColumn('is_approved', function ($query) {
+                if ($query->is_approved == 1) {
+                    return "<i class='badge bg-info'>Approved </i>";
+                } else {
+                    return "<i class='badge bg-danger'>Pending </i>";
+                }
+            })
             ->addColumn('type', function ($query) {
                 switch ($query->product_type) {
                     case 'new_arrival':
-                        return "<i class='badge bg-danger'>New Arrival</i>";
+                        return "<i class='badge bg-warning'>New Arrival</i>";
                         break;
                     case 'featured_product':
                         return "<i class='badge bg-success'>Featured Product</i>";
@@ -63,7 +70,7 @@ class VendorProductDataTable extends DataTable
             ->addColumn('status',  function ($query) {
                 if ($query->status == 1) {
                     $button = '<div class="form-check form-switch" style="width:100px" >
-                           <input class="form-check-input change-status " type="checkbox" id="flexSwitchCheckChecked"  data-id="' . $query->id . '"  >
+                           <input checked class="form-check-input change-status " type="checkbox" id="flexSwitchCheckChecked"  data-id="' . $query->id . '"  >
                             </div>';
                 } else {
                     $button = '<div class="form-check form-switch" style="width:100px">
@@ -72,7 +79,7 @@ class VendorProductDataTable extends DataTable
                 }
                 return $button;
             })
-            ->rawColumns(['action', 'status', 'image', 'type'])
+            ->rawColumns(['action', 'status', 'image', 'type', 'is_approved'])
             ->setRowId('id');
     }
 
@@ -116,6 +123,7 @@ class VendorProductDataTable extends DataTable
             Column::make('image'),
             Column::make('name'),
             Column::make('price'),
+            Column::make('is_approved'),
             Column::make('type'),
             Column::make('status'),
             Column::computed('action')

@@ -195,7 +195,13 @@ class VendorProductController extends Controller
         $product->delete();
         return response(['status' => 'success', 'message' => $product->name . ' product Deleted Successfully']);
     }
-
+    public function changeStatus(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $product->status = $request->isChecked == 'true' ? 1 : 0;
+        $product->save();
+        return response(['status' => 'success', 'message' => $product->name . ' Status has been updated']);
+    }
     public function getSubCategory(Request $request)
     {
         $subCategories = SubCategory::where('category_id', $request->id)->get();
