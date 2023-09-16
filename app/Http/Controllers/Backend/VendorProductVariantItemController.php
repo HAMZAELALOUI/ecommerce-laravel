@@ -22,7 +22,7 @@ class VendorProductVariantItemController extends Controller
         $variant = ProductVariant::findOrFail($variantID);
         $product = Product::findOrFail($productID);
 
-        return view('admin.product.product-variant-items.create', compact('variant', 'product'));
+        return view('vendor.products.product-variant-item.create', compact('variant', 'product'));
     }
     public function store(Request $request)
     {
@@ -42,8 +42,8 @@ class VendorProductVariantItemController extends Controller
         $variantItem->is_default = $request->is_default;
         $variantItem->status = $request->status;
         $variantItem->save();
-        toastr('Items Created Successfully ', 'success', 'success');
-        return redirect()->route('admin.product-variant-item.index', ['productID' => request()->product_id, 'variantID' => request()->variant_id]);
+        toastr('Item Created Successfully ', 'success', 'success');
+        return redirect()->route('vendor.product-variant-item.index', ['productID' => request()->product_id, 'variantID' => request()->variant_id]);
     }
 
     public function edit(string $variantItemID)
@@ -51,7 +51,7 @@ class VendorProductVariantItemController extends Controller
 
         $variantItem = ProductVariantItem::findOrFail($variantItemID);
 
-        return view('admin.product.product-variant-items.edit', compact('variantItem'));
+        return view('vendor.products.product-variant-item.edit', compact('variantItem'));
     }
 
     public function update(Request $request, string $variantItemID)
@@ -73,7 +73,7 @@ class VendorProductVariantItemController extends Controller
         $variantItem->status = $request->status;
         $variantItem->save();
         toastr('Items Updated Successfully ', 'success', 'success');
-        return redirect()->route('admin.product-variant-item.index', ['productID' =>  $variantItem->variant->product_id, 'variantID' => $variantItem->variant_id]);
+        return redirect()->route('vendor.product-variant-item.update', ['productID' =>  $variantItem->variant->product_id, 'variantID' => $variantItem->variant_id]);
     }
 
     public function destroy(string $variantItemID)

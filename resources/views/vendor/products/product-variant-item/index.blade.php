@@ -14,11 +14,11 @@
                         Back</a>
                 </div>
                 <div class="dashboard_content mt-2 mt-md-0">
-                    <h3><i class="far fa-user"></i> Product Variant</h3>
+                    <h3><i class="far fa-user"></i> Product Variant Item</h3>
                     <h4> Variant : {{ $variant->name }}</h4>
                     <div class="create_button container d-flex justify-content-end mt-4">
-                        <a href="{{ route('vendor.product-variant.create', ['product' => $product->id]) }}"
-                            class="btn btn-primary  mb-4"><i class="fas fa-plus"></i> Add Variant</a>
+                        <a href="{{ route('vendor.product-variant-item.create', ['productID' => $product->id, 'variantID' => $variant->id]) }}"
+                            class="btn btn-primary  mb-4"><i class="fas fa-plus"></i> Add Variant Item</a>
                     </div>
                     <div class="wsus__dashboard_profile">
                         <div class="wsus__dash_pro_area">
