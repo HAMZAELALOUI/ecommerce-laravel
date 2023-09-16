@@ -9,36 +9,32 @@
         <div class="row">
             <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
                 <div class="mb-3">
-                    <a href="{{ route('vendor.products.index') }}" class="btn btn-primary"><i
-                            class="fas fa-long-arrow-alt-left"></i>
+                    <a href="{{ route('vendor.product-variant.index', ['product' => $variant->product_id]) }}"
+                        class="btn btn-primary"><i class="fas fa-long-arrow-alt-left"></i>
                         Back</a>
                 </div>
                 <div class="dashboard_content mt-2 mt-md-0">
-                    <h3><i class="far fa-user"></i> Create Variant</h3>
+                    <h3><i class="far fa-user"></i> Update Variant</h3>
                     <div class="wsus__dashboard_profile">
                         <div class="wsus__dash_pro_area">
-                            <form action="{{ route('vendor.product-variant.store') }}" method="POST">
+                            <form action="{{ route('vendor.product-variant.update', $variant->id) }}" method="POST">
                                 @csrf
-
+                                @method('PUT')
                                 <div class="form-group">
                                     <label for="">Name</label>
-                                    <input type="text" class="form-control" name="name" value="">
-                                </div>
-                                <div class="form-group">
-
-                                    <input type="hidden" class="form-control" name="product"
-                                        value="{{ request()->product }}">
+                                    <input type="text" class="form-control" name="name" value="{{ $variant->name }}">
                                 </div>
 
                                 <div class="form-group mt-4">
                                     <label for="inputeState">Status</label>
                                     <select class="form-control" id="inputeState" name="status">
-                                        <option value="1">Active</option>
-                                        <option value="0">inactive</option>
+                                        <option {{ $variant->status == 1 ? 'selected' : '' }} value="1">Active</option>
+                                        <option {{ $variant->status == 0 ? 'selected' : '' }} value="0">inactive
+                                        </option>
                                     </select>
 
                                 </div>
-                                <Button type="submit" class="btn btn-primary mt-4">Create</Button>
+                                <Button type="submit" class="btn btn-primary mt-4">Update</Button>
                             </form>
                         </div>
                     </div>
