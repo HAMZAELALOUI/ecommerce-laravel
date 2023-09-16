@@ -90,6 +90,16 @@ class VendorProductVarinatController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $variant = ProductVariant::findOrFail($id);
+        $variant->delete();
+        return response(['status' => 'success', 'message' => 'varian Item Deleted Successfully']);
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $variant = ProductVariant::findOrFail($request->id);
+        $variant->status = $request->isChecked == 'true' ? 1 : 0;
+        $variant->save();
+        return response(['status' => 'success', 'message' => $variant->name . ' Status has been updated']);
     }
 }
