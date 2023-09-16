@@ -28,7 +28,7 @@
                                 <div class="form-group">
                                     <label for="">Item Name</label>
                                     <input type="text" class="form-control" name="name"
-                                        value="{{ $variantItem->name }}">
+                                        value="{{ $variantItem->variant->name }}">
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="variant_id"

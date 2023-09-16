@@ -50,7 +50,6 @@ class VendorProductVariantItemController extends Controller
     {
 
         $variantItem = ProductVariantItem::findOrFail($variantItemID);
-
         return view('vendor.products.product-variant-item.edit', compact('variantItem'));
     }
 
@@ -58,7 +57,6 @@ class VendorProductVariantItemController extends Controller
     {
         // return dd($request->all());
         $request->validate([
-            'variant_id' => ['integer'],
             'name' => ['required', 'max:200'],
             'price' => ['required'],
             'is_default' => ['required'],
@@ -66,14 +64,13 @@ class VendorProductVariantItemController extends Controller
         ]);
 
         $variantItem = ProductVariantItem::findOrFail($variantItemID);
-        $variantItem->variant_id = $request->variant_id;
         $variantItem->name = $request->name;
         $variantItem->price = $request->price;
         $variantItem->is_default = $request->is_default;
         $variantItem->status = $request->status;
         $variantItem->save();
         toastr('Items Updated Successfully ', 'success', 'success');
-        return redirect()->route('vendor.product-variant-item.update', ['productID' =>  $variantItem->variant->product_id, 'variantID' => $variantItem->variant_id]);
+        return redirect()->route('vendor.product-variant-item.index', ['productID' =>  $variantItem->variant->product_id, 'variantID' => $variantItem->variant_id]);
     }
 
     public function destroy(string $variantItemID)
