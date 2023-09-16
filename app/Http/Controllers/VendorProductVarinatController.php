@@ -23,7 +23,8 @@ class VendorProductVarinatController extends Controller
      */
     public function create()
     {
-        return view('vendor.products.product-variant.create', compact('product'));
+
+        return view('vendor.products.product-variant.create');
     }
 
     /**
@@ -61,7 +62,7 @@ class VendorProductVarinatController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('vendor.products.product-variant.edit');
     }
 
     /**
