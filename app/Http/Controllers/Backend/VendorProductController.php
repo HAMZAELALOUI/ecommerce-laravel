@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\ChildCategory;
+use App\Models\ImageProductGallery;
 use App\Models\Product;
+use App\Models\ProductVariant;
 use App\Models\SubCategory;
 use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
@@ -130,7 +132,7 @@ class VendorProductController extends Controller
         ]);
 
         $product = Product::findOrFail($id);
-        /** checj if the owner of the product  */
+        /** check if the owner of the product  */
         if ($product->vendor_id != Auth::user()->vendor->id) {
             abort(404);
         }
@@ -170,7 +172,28 @@ class VendorProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        /** check if the owner of the product  */
+        if ($product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
+        // /** delete the main Product Image  */
+        $this->deleteImage($product->thumb_image);
+
+        // /** delete Image Gallery */
+        $imageGallery = ImageProductGallery::where('product_id', $product->id)->get();
+        foreach ($imageGallery as $image) {
+            $this->deleteImage($image->image);
+            $image->delete();
+        }
+        /** DELETE PRODUCT VARIANT if EXIST */
+        $variants = ProductVariant::where('product_id', $product->id)->get();
+        foreach ($variants as $variant) {
+            $variant->productVariantItems()->delete();
+            $variant->delete();
+        }
+        $product->delete();
+        return response(['status' => 'success', 'message' => $product->name . ' product Deleted Successfully']);
     }
 
     public function getSubCategory(Request $request)

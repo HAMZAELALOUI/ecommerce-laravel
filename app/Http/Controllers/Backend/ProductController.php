@@ -166,14 +166,14 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         // /** delete the main Product Image  */
-        // $this->deleteImage($product->thumb_image);
+        $this->deleteImage($product->thumb_image);
 
         // /** delete Image Gallery */
-        // $imageGallery = ImageProductGallery::where('product_id', $product->id)->get();
-        // foreach ($imageGallery as $image) {
-        //     $this->deleteImage($image->image);
-        //     $image->delete();
-        // }
+        $imageGallery = ImageProductGallery::where('product_id', $product->id)->get();
+        foreach ($imageGallery as $image) {
+            $this->deleteImage($image->image);
+            $image->delete();
+        }
         /** DELETE PRODUCT VARIANT if EXIST */
         $variants = ProductVariant::where('product_id', $product->id)->get();
         foreach ($variants as $variant) {
