@@ -23,7 +23,32 @@ class VendorProductVariantItemDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'vendorproductvariantitem.action')
+            ->addColumn('action', function ($query) {
+                $editeBtn = "<a  href='" . route('vendor.product-variant-item.edit', $query->id) . "' class='btn btn-primary'><i class='fas fa-edit'></i></a>";
+                $deleteBtn = "<a  href='" . route('vendor.product-variant-item.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                return $editeBtn . $deleteBtn;
+            })
+            ->addColumn('variant', function ($query) {
+                return $query->variant->name;
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    $button = '<div class="form-check form-switch" style="width:100px" >
+                           <input  checked class="form-check-input change-status " type="checkbox" id="flexSwitchCheckChecked"  data-id="' . $query->id . '"  >
+                            </div>';
+                } else {
+                    $button = '<div class="form-check form-switch" style="width:100px">
+                               <input class="form-check-input change-status" type="checkbox" id="flexSwitchCheckChecked"   data-id="' . $query->id . '" >
+                               </div>';
+                }
+                return $button;
+            })
+            ->addColumn('is_default', function ($query) {
+                $yes = "<i class='badge bg-success'>Default</i>";
+                $no = "<i class='badge bg-danger'>Not Default</i>";
+                return $query->is_default == 1 ? $yes : $no;
+            })
+            ->rawColumns(['action', 'status', 'is_default', 'variant'])
             ->setRowId('id');
     }
 
@@ -32,7 +57,7 @@ class VendorProductVariantItemDataTable extends DataTable
      */
     public function query(ProductVariantItem $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('variant_id', request()->variantID)->newQuery();
     }
 
     /**
@@ -41,11 +66,11 @@ class VendorProductVariantItemDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('vendorproductvariantitem-table')
+            ->setTableId('prodauctvariantitem-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(0)
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),
@@ -63,15 +88,18 @@ class VendorProductVariantItemDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+
+            Column::make('id'),
+            Column::make('name'),
+            Column::make('variant'),
+            Column::make('price'),
+            Column::make('is_default'),
+            Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(200)
                 ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 
