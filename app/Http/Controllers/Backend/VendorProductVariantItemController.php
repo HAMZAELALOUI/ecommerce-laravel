@@ -8,13 +8,19 @@ use App\Models\Product;
 use App\Models\ProductVariant;
 use App\Models\ProductVariantItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VendorProductVariantItemController extends Controller
 {
     public function index(VendorProductVariantItemDataTable $dataTable, $productID, $variantID)
     {
-        $variant = ProductVariant::findOrFail($variantID);
         $product = Product::findOrFail($productID);
+        $variant = ProductVariant::findOrFail($variantID);
+        //check product vendor
+        if ($product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
+
         return $dataTable->render('vendor.products.product-variant-item.index', compact('variant', 'product'));
     }
     public function create(string $productID, string $variantID)

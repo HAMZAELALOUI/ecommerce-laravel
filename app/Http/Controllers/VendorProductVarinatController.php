@@ -6,6 +6,7 @@ use App\DataTables\VendorProductVariantDataTable;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VendorProductVarinatController extends Controller
 {
@@ -15,6 +16,10 @@ class VendorProductVarinatController extends Controller
     public function index(Request $request, VendorProductVariantDataTable $dtataTable)
     {
         $product = Product::findOrFail($request->product);
+        //check product vendor
+        if ($product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
         return $dtataTable->render('vendor.products.product-variant.index', compact('product'));
     }
 
@@ -63,6 +68,10 @@ class VendorProductVarinatController extends Controller
     public function edit(string $id)
     {
         $variant = ProductVariant::findOrFail($id);
+        //check product vendor
+        if ($variant->product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
         return view('vendor.products.product-variant.edit', compact('variant'));
     }
 
@@ -77,6 +86,11 @@ class VendorProductVarinatController extends Controller
         ]);
 
         $variant = ProductVariant::findOrFail($id);
+        //check product vendor
+        if ($variant->product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
+
         $variant->name = $request->name;
         $variant->status = $request->status;
         $variant->save();
@@ -91,6 +105,10 @@ class VendorProductVarinatController extends Controller
     public function destroy(string $id)
     {
         $variant = ProductVariant::findOrFail($id);
+        //check product vendor
+        if ($variant->product->vendor_id != Auth::user()->vendor->id) {
+            abort(404);
+        }
         $variant->delete();
         return response(['status' => 'success', 'message' => 'varian Item Deleted Successfully']);
     }

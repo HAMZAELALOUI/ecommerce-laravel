@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductVariantController extends Controller
 {
@@ -16,6 +17,7 @@ class ProductVariantController extends Controller
     public function index(ProductVariantDataTable $dataTable, Request $request)
     {
         $product = Product::findOrFail($request->product);
+
         return  $dataTable->render('admin.product.product-variant.index', compact('product'));
     }
 
