@@ -82,3 +82,4 @@ Route::get('seller-products', [SellerProductsController::class, 'index'])->name(
 
 /** Seller pending Products Routes */
 Route::get('seller-pending-products', [SellerProductsController::class, 'pendingProducts'])->name('seller-pending-products.index');
+Route::put('seller-pending-products/change-approve-status', [SellerProductsController::class, 'changeApproveStatus'])->name('change-approve-status');

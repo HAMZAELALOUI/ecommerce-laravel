@@ -60,13 +60,29 @@
                     }
                 });
             });
+            // Work With change Approve Status
+            $('body').on('change', '.is_approve', function() {
+                let value = $(this).val();
+                let id = $(this).data('id');
+
+
+                $.ajax({
+                    url: "{{ route('admin.change-approve-status') }}",
+                    method: 'PUT',
+                    data: {
+                        value: value,
+                        id: id,
+                    },
+                    success: function(data) {
+                        toastr.success(data.message);
+                        window.location.reload();
+
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            });
         });
     </script>
 @endpush
-
-@if (session('reload'))
-    <script>
-        // Reload the page
-        window.location.reload();
-    </script>
-@endif

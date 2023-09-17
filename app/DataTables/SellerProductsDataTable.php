@@ -79,7 +79,13 @@ class SellerProductsDataTable extends DataTable
             ->addColumn('vendor',  function ($query) {
                 return $query->vendor->shop_name;
             })
-            ->rawColumns(['action', 'status', 'image', 'type'])
+            ->addColumn('approve',  function ($query) {
+                return ' <select name="" id="" class="form-control is_approve" data-id="' . $query->id . '">
+                <option  value="0">Pending</option>
+                <option  selected value="1">Approved</option>
+            </select>';
+            })
+            ->rawColumns(['action', 'status', 'image', 'type', 'approve'])
             ->setRowId('id');
     }
 
@@ -88,7 +94,9 @@ class SellerProductsDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        return $model->where('vendor_id', '!=', Auth::user()->vendor->id)->newQuery();
+        return $model->where('vendor_id', '!=', Auth::user()->vendor->id)
+            ->where('is_approved', 1)
+            ->newQuery();
     }
 
     /**
@@ -125,6 +133,7 @@ class SellerProductsDataTable extends DataTable
             Column::make('vendor'),
             Column::make('price'),
             Column::make('type'),
+            Column::make('approve'),
             Column::make('status'),
             Column::computed('action')
                 ->exportable(false)
