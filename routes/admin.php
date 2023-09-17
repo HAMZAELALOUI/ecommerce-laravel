@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
+use App\Http\Controllers\Backend\SellerProductsController;
 // use App\Http\Controllers\ProductVariantController as ControllersProductVariantController;
 use App\Http\Controllers\VendorAdminProfileController;
 use App\Models\Product;
@@ -74,3 +75,8 @@ Route::post('product-variant-item/store', [ProductVariantItemController::class, 
 Route::put('product-variant-item/{variantItemID}/update', [ProductVariantItemController::class, 'update'])->name('product-variant-item.update');
 Route::delete('product-variant-item/{variantItemID}', [ProductVariantItemController::class, 'destroy'])->name('product-variant-item.destroy');
 Route::put('product-variant-item/change-status', [ProductVariantItemController::class, 'changeStatus'])->name('product-variant-item.change-status');
+
+
+/** Seller Products Routes */
+
+Route::get('seller-products', [SellerProductsController::class, 'index'])->name('seller-products.index');
