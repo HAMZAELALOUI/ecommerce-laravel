@@ -3,7 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Product;
-use App\Models\SellerProduct;
+use App\Models\SellerPendingProduct;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
@@ -14,7 +14,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class SellerProductsDataTable extends DataTable
+class SellerPendingProductDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -79,7 +79,13 @@ class SellerProductsDataTable extends DataTable
             ->addColumn('vendor',  function ($query) {
                 return $query->vendor->shop_name;
             })
-            ->rawColumns(['action', 'status', 'image', 'type'])
+            ->addColumn('approve',  function ($query) {
+                return ' <select name="" id="" class="form-control">
+                <option  value="0">Pending</option>
+                <option  value="1">Approved</option>
+            </select>';
+            })
+            ->rawColumns(['action', 'status', 'image', 'type', 'approve'])
             ->setRowId('id');
     }
 
@@ -88,7 +94,7 @@ class SellerProductsDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        return $model->where('vendor_id', '!=', Auth::user()->vendor->id)->newQuery();
+        return $model->where('is_approved', '==', 0)->newQuery();
     }
 
     /**
@@ -125,6 +131,7 @@ class SellerProductsDataTable extends DataTable
             Column::make('vendor'),
             Column::make('price'),
             Column::make('type'),
+            Column::make('approve')->width(200),
             Column::make('status'),
             Column::computed('action')
                 ->exportable(false)

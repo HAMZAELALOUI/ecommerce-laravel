@@ -37,6 +37,8 @@
                             href="{{ route('admin.product.index') }}">Products</a></li>
                     <li class="{{ setActive(['admin.product.*']) }}"><a class="nav-link"
                             href="{{ route('admin.seller-products.index') }}">Seller Products</a></li>
+                    <li class="{{ setActive(['admin.product.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.seller-pending-products.index') }}">Seller Pending Products</a></li>
                 </ul>
             </li>
             <li class="dropdown {{ setActive(['admin.vendor-profile.*']) }}">
