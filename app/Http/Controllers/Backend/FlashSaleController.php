@@ -41,9 +41,11 @@ class FlashSaleController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'product' => ['required'],
+            'product' => ['required', 'unique:flash_sale_items,product_id'],
             'show_at_home' => ['required'],
             'status' => ['required'],
+        ], [
+            'product.unique' => 'the product is already in flash sale'
         ]);
 
         $flasheEndDate = FlashSale::first();

@@ -30,7 +30,7 @@ class FlashItemDataTable extends DataTable
                 return  "<a  href='" . route('admin.flash-sale.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
             })
             ->addColumn('product_Name', function ($query) {
-                return $query->product->name;
+                return '<a href="' . route('admin.product.index') . '">' . $query->product->name . '</a>';
             })
             ->addColumn('show_at_home',  function ($query) {
                 if ($query->show_at_home == 1) {
@@ -60,7 +60,7 @@ class FlashItemDataTable extends DataTable
                 }
                 return $button;
             })
-            ->rawColumns(['show_at_home', 'status', 'action'])
+            ->rawColumns(['show_at_home', 'status', 'action', 'product_Name'])
             ->setRowId('id');
     }
 
