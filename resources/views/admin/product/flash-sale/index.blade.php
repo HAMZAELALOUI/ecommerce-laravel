@@ -44,14 +44,40 @@
                             <h4>Add Flash sale Product</h4>
                         </div>
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{ route('admin.flash-sale.update.add-sale-product') }}" method="POST">
+                                @csrf
                                 <div class="form-group">
-                                    <label>Add flash sale</label>
-                                    <select class="form-control select2 ">
-                                        <option>Option 1</option>
-                                        <option>Option 2</option>
-                                        <option>Option 3</option>
+                                    <label>Add product</label>
+                                    <select class="form-control select2 " name="product">
+                                        <option>select</option>
+                                        @foreach ($products as $product)
+                                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                        @endforeach
+
                                     </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Show at Home?</label>
+                                            <select class="form-control select2 " name="show_at_home">
+                                                <option value="">select</option>
+                                                <option value="1"> Yes</option>
+                                                <option value="0">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control select2 " name="status">
+                                                <option value="">select</option>
+                                                <option value="1"> Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>
