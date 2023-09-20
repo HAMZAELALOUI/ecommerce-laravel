@@ -58,4 +58,25 @@ class FlashSaleController extends Controller
         toastr('Added Succefully', 'success', 'success');
         return redirect()->back();
     }
+    public function changeStatus(Request $request)
+    {
+        $flashSaleItem = FlashSaleItem::findOrFail($request->id);
+        $flashSaleItem->status = $request->isChecked == 'true' ? 1 : 0;
+        $flashSaleItem->save();
+        return response(['status' => 'success', 'message' =>  $flashSaleItem->name . '  status has been updated']);
+    }
+    public function showHomeStatus(Request $request)
+    {
+        $flashSaleItem = FlashSaleItem::findOrFail($request->id);
+        $flashSaleItem->show_at_home = $request->isChecked == 'true' ? 1 : 0;
+        $flashSaleItem->save();
+        return response(['status' => 'success', 'message' => 'status has been updated']);
+    }
+
+    public function destroy(String $id)
+    {
+        $flashSaleItem = FlashSaleItem::findOrFail($id);
+        $flashSaleItem->delete();
+        return response(['status' => 'success', 'message' => 'sale Item Deleted Successfully']);
+    }
 }
