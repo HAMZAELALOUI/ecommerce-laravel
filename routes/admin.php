@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\FlashSaleController;
 use App\Http\Controllers\Backend\ImageProductGalleryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -83,3 +84,8 @@ Route::get('seller-products', [SellerProductsController::class, 'index'])->name(
 /** Seller pending Products Routes */
 Route::get('seller-pending-products', [SellerProductsController::class, 'pendingProducts'])->name('seller-pending-products.index');
 Route::put('seller-pending-products/change-approve-status', [SellerProductsController::class, 'changeApproveStatus'])->name('change-approve-status');
+
+
+/**flash sale routes */
+
+Route::get('flash-sale', [FlashSaleController::class, 'index'])->name('flash-sale.index');
