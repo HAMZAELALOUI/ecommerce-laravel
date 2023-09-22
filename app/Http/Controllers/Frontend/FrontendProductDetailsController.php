@@ -12,7 +12,7 @@ class FrontendProductDetailsController extends Controller
     //product details
     public function showProductDeyails(string $slug)
     {
-        $product = Product::where('slug', $slug)->where('status', 1)->first();
+        $product = Product::with(['vendor', 'category', 'imageProductGalleries', 'brand', 'variant'])->where('slug', $slug)->where('status', 1)->first();
         $flashSaleDate = FlashSale::first();
         return view('frontend.pages.product-details', compact('product', 'flashSaleDate'));
     }
