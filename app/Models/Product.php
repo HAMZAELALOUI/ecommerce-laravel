@@ -22,4 +22,12 @@ class Product extends Model
     {
         return $this->hasMany(ImageProductGallery::class);
     }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+    public function variant()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
 }
