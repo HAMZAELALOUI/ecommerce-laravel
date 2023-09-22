@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==========================
-                                                                                                                                                                                                                                          PRODUCT MODAL VIEW START
-                                                                                                                                                                                                                                        ===========================-->
+                                                                                                                                                                                                                                                                                                                                                              PRODUCT MODAL VIEW START
+                                                                                                                                                                                                                                                                                                                                                            ===========================-->
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -141,13 +141,13 @@
         </div>
     </section>
     <!--==========================
-                                                                                                                                                                                                                                        PRODUCT MODAL VIEW END
-                                                                                                                                                                                                                                      ===========================-->
+                                                                                                                                                                                                                                                                                                                                                            PRODUCT MODAL VIEW END
+                                                                                                                                                                                                                                                                                                                                                          ===========================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                          BREADCRUMB START
-                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                              BREADCRUMB START
+                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -165,13 +165,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                          BREADCRUMB END
-                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                              BREADCRUMB END
+                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                          PRODUCT DETAILS START
-                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                              PRODUCT DETAILS START
+                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__product_details">
         <div class="container">
             <div class="wsus__details_bg">
@@ -232,10 +232,7 @@
                                 <i class="fas fa-star-half-alt"></i>
                                 <span>20 review</span>
                             </p>
-                            <!-- <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia
-                                                                                                                                                                                                                                                                  neque
-                                                                                                                                                                                                                                                                  sint obcaecati asperiores dolor cumque. ad voluptate dolores reprehenderit hic adipisci
-                                                                                                                                                                                                                                                                  Similique eaque illum.</p> -->
+                            <p class="description">{!! $product->short_description !!}</p>
 
                             <div class="wsus_pro_hot_deals">
                                 <h5>offer ending time : </h5>
@@ -268,7 +265,6 @@
                                     <input class="number_area" type="text" min="1" max="100"
                                         value="1" />
                                 </form>
-                                <h3>${{ $product->offer_price }}</h3>
                             </div>
 
                             <ul class="wsus__button_area">
@@ -277,24 +273,8 @@
                                 <li><a href="#"><i class="fal fa-heart"></i></a></li>
                                 <li><a href="#"><i class="far fa-random"></i></a></li>
                             </ul>
-                            <p class="brand_model"><span>model :</span> 12345670</p>
                             <p class="brand_model"><span>brand : </span> {{ $product->brand->name }}</p>
-                            <div class="wsus__pro_det_share">
-                                <h5>share :</h5>
-                                <ul class="d-flex">
-                                    <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    </li>
-                                    <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a>
-                                    </li>
-                                    <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <a class="wsus__pro_report" href="#" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"><i class="fal fa-comment-alt-smile"></i> Report
-                                incorrect
-                                product information.</a>
+
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
@@ -347,11 +327,7 @@
                                         data-bs-target="#pills-home22" type="button" role="tab"
                                         aria-controls="pills-home" aria-selected="true">Description</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-profile-tab7" data-bs-toggle="pill"
-                                        data-bs-target="#pills-profile22" type="button" role="tab"
-                                        aria-controls="pills-profile" aria-selected="false">Information</button>
-                                </li>
+
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                                         data-bs-target="#pills-contact" type="button" role="tab"
@@ -362,16 +338,7 @@
                                         data-bs-target="#pills-contact2" type="button" role="tab"
                                         aria-controls="pills-contact2" aria-selected="false">Reviews</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab23" data-bs-toggle="pill"
-                                        data-bs-target="#pills-contact23" type="button" role="tab"
-                                        aria-controls="pills-contact23" aria-selected="false">comment</button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="pills-contact-tab239" data-bs-toggle="pill"
-                                        data-bs-target="#pills-contact239" type="button" role="tab"
-                                        aria-controls="pills-contact239" aria-selected="false">faqs</button>
-                                </li>
+
                             </ul>
                             <div class="tab-content" id="pills-tabContent4">
                                 <div class="tab-pane fade  show active " id="pills-home22" role="tabpanel"
@@ -380,7 +347,7 @@
                                         <div class="col-xl-12">
                                             <div class="wsus__description_area">
 
-                                                {{ strip_tags($product->long_description) }}
+                                                {!! $product->long_description !!}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -446,13 +413,13 @@
                                         <div class="row">
                                             <div class="col-xl-6 col-xxl-5 col-md-6">
                                                 <div class="wsus__vebdor_img">
-                                                    <img src="images/slider_1.jpg" alt="vensor"
-                                                        class="img-fluid w-100">
+                                                    <img src="{{ asset($product->vendor->banner) }}" alt="vensor"
+                                                        class="img-fluid w-90">
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-xxl-7 col-md-6 mt-4 mt-md-0">
                                                 <div class="wsus__pro_det_vendor_text">
-                                                    <h4>jhon deo</h4>
+                                                    <h4> {{ $product->vendor->user->name }}</h4>
                                                     <p class="rating">
                                                         <i class="fas fa-star"></i>
                                                         <i class="fas fa-star"></i>
@@ -461,41 +428,16 @@
                                                         <i class="fas fa-star"></i>
                                                         <span>(41 review)</span>
                                                     </p>
-                                                    <p><span>Store Name:</span> OAIO Store</p>
-                                                    <p><span>Address:</span> Steven Street, El Carjon, CA 92020, United
-                                                        States (US)</p>
-                                                    <p><span>Phone:</span> 1234567890</p>
-                                                    <p><span>mail:</span> example@gmail.com</p>
+                                                    <p><span>Store Name:</span> {{ $product->vendor->shop_name }}</p>
+                                                    <p><span>Address:</span>{{ $product->vendor->Adress }}</p>
+                                                    <p><span>Phone:</span>{{ $product->vendor->phone }}</p>
+                                                    <p><span>mail:</span>{{ $product->vendor->email }}</p>
                                                     <a href="vendor_details.html" class="see_btn">visit store</a>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-12">
+                                            <div class="col-xl-12 mt-5">
                                                 <div class="wsus__vendor_details">
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                                        eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                                        Venenatis tellus in metus vulputate eu scelerisque felis. Vel
-                                                        pretium lectus quam id leo in vitae turpis massa. Nunc id cursus
-                                                        metus aliquam. Libero id faucibus nisl tincidunt eget. Aliquam
-                                                        id
-                                                        diam maecenas ultricies mi eget mauris. Volutpat ac tincidunt
-                                                        vitae
-                                                        semper quis lectus. Vestibulum mattis ullamcorper velit sed. A
-                                                        arcu
-                                                        cursus vitae congue mauris.
-                                                        <span>A arcu cursus vitae congue mauris. Sagittis id consectetur
-                                                            purus ut. Tellus rutrum tellus pellentesque eu tincidunt
-                                                            tortor
-                                                            aliquam nulla. Diam in arcu cursus euismod quis. Eget sit
-                                                            amet
-                                                            tellus cras adipiscing enim eu. In fermentum et sollicitudin
-                                                            ac
-                                                            orci phasellus. A condimentum vitae sapien pellentesque
-                                                            habitant
-                                                            morbi tristique senectus et. In dictum non consectetur a
-                                                            erat.
-                                                            Nunc scelerisque viverra mauris in aliquam sem fringilla.
-                                                        </span>
-                                                    </p>
+                                                    {!! $product->vendor->description !!}
                                                 </div>
                                             </div>
                                         </div>
@@ -975,13 +917,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                          PRODUCT DETAILS END
-                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                              PRODUCT DETAILS END
+                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                          RELATED PRODUCT START
-                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                              RELATED PRODUCT START
+                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
@@ -1145,8 +1087,8 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                          RELATED PRODUCT END
-                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                              RELATED PRODUCT END
+                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 @endsection
 
 @push('scripts')
