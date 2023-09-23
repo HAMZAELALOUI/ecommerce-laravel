@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('general_settings', function (Blueprint $table) {
             $table->id();
+            $table->string('site_name');
+            $table->string('contact_email');
+            $table->string('layout');
+            $table->string('currency_name');
+            $table->string('currency_icon');
+            $table->string('time_zone');
             $table->timestamps();
         });
     }

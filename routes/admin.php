@@ -100,3 +100,4 @@ Route::put('flash-sale/show-home-status', [FlashSaleController::class, 'showHome
 /** General Settings Routes */
 
 Route::get('settings', [GeneraleSettingsController::class, 'index'])->name('settings.index');
+Route::put('update-general-settings', [GeneraleSettingsController::class, 'UpdateGeneralSettings'])->name('update-general-settings');
