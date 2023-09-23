@@ -2,8 +2,8 @@
 
 @section('content')
     <!--==========================
-                                                                                                                                                                                                                                                                                                                                                                  PRODUCT MODAL VIEW START
-                                                                                                                                                                                                                                                                                                                                                                ===========================-->
+                                                                                                                                                                                                                                                                                                                                                                              PRODUCT MODAL VIEW START
+                                                                                                                                                                                                                                                                                                                                                                            ===========================-->
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -141,13 +141,13 @@
         </div>
     </section>
     <!--==========================
-                                                                                                                                                                                                                                                                                                                                                                PRODUCT MODAL VIEW END
-                                                                                                                                                                                                                                                                                                                                                              ===========================-->
+                                                                                                                                                                                                                                                                                                                                                                            PRODUCT MODAL VIEW END
+                                                                                                                                                                                                                                                                                                                                                                          ===========================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                  BREADCRUMB START
-                                                                                                                                                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                              BREADCRUMB START
+                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -165,13 +165,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                  BREADCRUMB END
-                                                                                                                                                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                              BREADCRUMB END
+                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                  PRODUCT DETAILS START
-                                                                                                                                                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                              PRODUCT DETAILS START
+                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__product_details">
         <div class="container">
             <div class="wsus__details_bg">
@@ -220,9 +220,11 @@
                                 @endif
                             </p>
                             @if (checkDiscount($product))
-                                <h4>${{ $product->offer_price }}<del>${{ $product->price }}</del></h4>
+                                <h4>{{ $settings->currency_icon }}
+                                    {{ $product->offer_price }}<del>{{ $settings->currency_icon }}
+                                        {{ $product->price }}</del></h4>
                             @else
-                                <h4>${{ $product->price }}</h4>
+                                <h4>{{ $settings->currency_icon }} {{ $product->price }}</h4>
                             @endif
                             <p class="review">
                                 <i class="fas fa-star"></i>
@@ -248,7 +250,7 @@
                                                     <option {{ $productVariantItem->is_default == 1 ? 'selected' : '' }}
                                                         value="{{ $productVariantItem->id }}">
                                                         {{ $productVariantItem->name }}
-                                                        (${{ $productVariantItem->price }})
+                                                        ({{ $settings->currency_icon }} {{ $productVariantItem->price }})
                                                     </option>
                                                 @endforeach
 
@@ -917,13 +919,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                  PRODUCT DETAILS END
-                                                                                                                                                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                              PRODUCT DETAILS END
+                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                  RELATED PRODUCT START
-                                                                                                                                                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                              RELATED PRODUCT START
+                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
@@ -1087,8 +1089,8 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                  RELATED PRODUCT END
-                                                                                                                                                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                              RELATED PRODUCT END
+                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 @endsection
 
 @push('scripts')
@@ -1099,7 +1101,6 @@
                 year: {{ date('Y', strtotime($flashSaleDate->end_date)) }},
                 month: {{ date('m', strtotime($flashSaleDate->end_date)) }},
                 day: {{ date('d', strtotime($flashSaleDate->end_date)) }},
-                enableUtc: true
             });
         })
     </script>

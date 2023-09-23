@@ -2,7 +2,7 @@
 
 @section('content')
     <!--============================
-                                                                                                                                                                                                                   ==============================-->
+                                                                                                                                                                                                                           ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -19,13 +19,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                  BREADCRUMB END
-                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                          BREADCRUMB END
+                                                                                                                                                                                                                                      ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                  DAILY DEALS DETAILS START
-                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                          DAILY DEALS DETAILS START
+                                                                                                                                                                                                                                      ==============================-->
     <section id="wsus__daily_deals">
         <div class="container">
             <div class="wsus__offer_details_area">
@@ -111,11 +111,11 @@
                                     <a class="wsus__pro_name"
                                         href="{{ route('product-details', $product->slug) }}">{{ $product->name }}</a>
                                     @if (checkDiscount($product))
-                                        <p class="wsus__price">${{ $product->offer_price }}
-                                            <del>${{ $product->price }}</del>
+                                        <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->offer_price }}
+                                            <del>{{ $settings->currency_icon }} {{ $product->price }}</del>
                                         </p>
                                     @else
-                                        <p class="wsus__price">${{ $product->price }} </del>
+                                        <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->price }} </del>
                                         </p>
                                     @endif
                                     <a class="add_cart" href="#">add to cart</a>
@@ -133,8 +133,8 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                  DAILY DEALS DETAILS END
-                                                                                                                                                                                                                              ==============================-->
+                                                                                                                                                                                                                                          DAILY DEALS DETAILS END
+                                                                                                                                                                                                                                      ==============================-->
 @endsection
 
 @push('scripts')
@@ -145,7 +145,7 @@
                 year: {{ date('Y', strtotime($flashSaleDate->end_date)) }},
                 month: {{ date('m', strtotime($flashSaleDate->end_date)) }},
                 day: {{ date('d', strtotime($flashSaleDate->end_date)) }},
-                enableUtc: true
+                {{ $settings->currency_icon }}
             });
         })
     </script>

@@ -26,7 +26,7 @@
                             <span
                                 class="wsus__minus">{{ calculatDiscountPercentage($product->price, $product->offer_price) }}%</span>
                         @endif
-                        <a class="wsus__pro_link" href="product_details.html">
+                        <a class="wsus__pro_link" href="{{ route('product-details', $product->slug) }}">
                             <img src="{{ asset($product->thumb_image) }}" alt="product"
                                 class="img-fluid w-100 img_1" />
                             <img src="
@@ -54,10 +54,11 @@
                             </p>
                             <a class="wsus__pro_name" href="#">{{ $product->name }}</a>
                             @if (checkDiscount($product))
-                                <p class="wsus__price">${{ $product->offer_price }} <del>${{ $product->price }}</del>
+                                <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->offer_price }}
+                                    <del>{{ $settings->currency_icon }} {{ $product->price }}</del>
                                 </p>
                             @else
-                                <p class="wsus__price">${{ $product->price }} </del>
+                                <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->price }} </del>
                                 </p>
                             @endif
                             <a class="add_cart" href="#">add to cart</a>
@@ -80,7 +81,6 @@
                 year: {{ date('Y', strtotime($flashSaleDate->end_date)) }},
                 month: {{ date('m', strtotime($flashSaleDate->end_date)) }},
                 day: {{ date('d', strtotime($flashSaleDate->end_date)) }},
-                enableUtc: true
             });
         })
     </script>
