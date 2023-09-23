@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\SellerProductsController;
+use App\Http\Controllers\CouponsController;
 // use App\Http\Controllers\ProductVariantController as ControllersProductVariantController;
 use App\Http\Controllers\VendorAdminProfileController;
 use App\Models\Product;
@@ -96,7 +97,8 @@ Route::delete('flash-sale/destroy/{id}', [FlashSaleController::class, 'destroy']
 Route::put('flash-sale/change-status', [FlashSaleController::class, 'changeStatus'])->name('flash-sale.change-status');
 Route::put('flash-sale/show-home-status', [FlashSaleController::class, 'showHomeStatus'])->name('flash-sale.show-home-status');
 
-
+/** Couons Routes */
+Route::resource('coupons', CouponsController::class);
 /** General Settings Routes */
 
 Route::get('settings', [GeneraleSettingsController::class, 'index'])->name('settings.index');
