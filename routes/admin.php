@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\FlashSaleController;
+use App\Http\Controllers\Backend\GeneraleSettingsController;
 use App\Http\Controllers\Backend\ImageProductGalleryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -94,3 +95,8 @@ Route::post('flash-sale/add-sale-product', [FlashSaleController::class, 'AddSale
 Route::delete('flash-sale/destroy/{id}', [FlashSaleController::class, 'destroy'])->name('flash-sale.destroy');
 Route::put('flash-sale/change-status', [FlashSaleController::class, 'changeStatus'])->name('flash-sale.change-status');
 Route::put('flash-sale/show-home-status', [FlashSaleController::class, 'showHomeStatus'])->name('flash-sale.show-home-status');
+
+
+/** General Settings Routes */
+
+Route::get('settings', [GeneraleSettingsController::class, 'index'])->name('settings.index');

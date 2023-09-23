@@ -62,6 +62,9 @@
                             href="{{ route('admin.slider.index') }}">Slider</a></li>
                 </ul>
             </li>
+            <li><a class="nav-link" href="{{ route('admin.settings.index') }}"><i class="fas fa-cog"></i>
+                    <span>Settings</span></a></li>
+
 
             {{-- <li class="menu-header">Starter</li>
       <li class="dropdown">
@@ -72,7 +75,6 @@
           <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
         </ul>
       </li> --}}
-            {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li> --}}
         </ul>
 
     </aside>
