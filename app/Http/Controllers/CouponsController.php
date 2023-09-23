@@ -113,6 +113,15 @@ class CouponsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $coupon = Coupons::findOrFail($id);
+        $coupon->delete();
+        return response(['status' => 'success', 'message' => 'coupon has been Deleted Successfully']);
+    }
+    public function changeStatus(Request $request)
+    {
+        $coupon = Coupons::findOrFail($request->id);
+        $coupon->status = $request->isChecked == 'true' ? 1 : 0;
+        $coupon->save();
+        return response(['status' => 'success', 'message' => $coupon->name . ' Status has been updated']);
     }
 }

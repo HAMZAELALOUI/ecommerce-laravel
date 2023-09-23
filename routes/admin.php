@@ -81,6 +81,7 @@ Route::put('product-variant-item/change-status', [ProductVariantItemController::
 
 
 /** Seller Products Routes */
+
 Route::get('seller-products', [SellerProductsController::class, 'index'])->name('seller-products.index');
 
 /** Seller pending Products Routes */
@@ -98,6 +99,7 @@ Route::put('flash-sale/change-status', [FlashSaleController::class, 'changeStatu
 Route::put('flash-sale/show-home-status', [FlashSaleController::class, 'showHomeStatus'])->name('flash-sale.show-home-status');
 
 /** Couons Routes */
+Route::put('coupons/change-status', [CouponsController::class, 'changeStatus'])->name('coupons.change-status');
 Route::resource('coupons', CouponsController::class);
 /** General Settings Routes */
 
