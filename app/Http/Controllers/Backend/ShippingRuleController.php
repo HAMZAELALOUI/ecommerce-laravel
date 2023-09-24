@@ -63,7 +63,8 @@ class ShippingRuleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $shippingRule = ShippingRule::findOrFail($id);
+        return view('admin.shipping-rule.edit', compact('shippingRule'));
     }
 
     /**
@@ -71,7 +72,24 @@ class ShippingRuleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all()); 
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'type' => ['required', 'max:200'],
+            'min_cost' => ['nullable', 'integer'],
+            'cost' => ['required', 'integer'],
+            'status' => ['required'],
+        ]);
+
+        $shippingRule = ShippingRule::findOrFail($id);
+        $shippingRule->name = $request->name;
+        $shippingRule->type = $request->type;
+        $shippingRule->min_cost = $request->min_cost;
+        $shippingRule->cost = $request->cost;
+        $shippingRule->status = $request->status;
+        $shippingRule->save();
+        toastr('Shipping rule Updated Successfully', 'success', 'success');
+        return redirect()->route('admin.shipping-rule.index');
     }
 
     /**
