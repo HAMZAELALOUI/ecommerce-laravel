@@ -5,8 +5,8 @@
         <div class="container-fluid">
             @include('frontend.dashboard.layouts.sidebar')
             <!--=============================
-        DASHBOARD START
-      ==============================-->
+            DASHBOARD START
+          ==============================-->
             <section id="wsus__dashboard">
                 <div class="container-fluid">
                     <div class="dashboard_sidebar">
@@ -79,8 +79,8 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <a href="dsahboard_address_add.html" class="add_address_btn common_btn"><i
-                                                    class="far fa-plus"></i>
+                                            <a href="{{ route('user.address.create') }}"
+                                                class="add_address_btn common_btn"><i class="far fa-plus"></i>
                                                 add new address</a>
                                         </div>
                                     </div>
@@ -91,8 +91,8 @@
                 </div>
             </section>
             <!--=============================
-        DASHBOARD START
-      ==============================-->
+            DASHBOARD START
+          ==============================-->
         </div>
     </section>
 @endsection
