@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductVariantController;
 use App\Http\Controllers\Backend\ProductVariantItemController;
 use App\Http\Controllers\Backend\SellerProductsController;
+use App\Http\Controllers\Backend\ShippingRuleController;
 use App\Http\Controllers\CouponsController;
 // use App\Http\Controllers\ProductVariantController as ControllersProductVariantController;
 use App\Http\Controllers\VendorAdminProfileController;
@@ -101,6 +102,11 @@ Route::put('flash-sale/show-home-status', [FlashSaleController::class, 'showHome
 /** Couons Routes */
 Route::put('coupons/change-status', [CouponsController::class, 'changeStatus'])->name('coupons.change-status');
 Route::resource('coupons', CouponsController::class);
+/** Couons Routes */
+Route::put('shipping-rule/change-status', [ShippingRuleController::class, 'changeStatus'])->name('shipping-rule.change-status');
+Route::resource('shipping-rule', ShippingRuleController::class);
+
+
 /** General Settings Routes */
 
 Route::get('settings', [GeneraleSettingsController::class, 'index'])->name('settings.index');
