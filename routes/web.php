@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Frontend\AdressController;
 use App\Http\Controllers\Frontend\FlashSaleMoreController;
 use App\Http\Controllers\Frontend\FrontendProductDetailsController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 
   Route::get('profile', [UserProfileController::class, 'index'])->name('profile');
   Route::put('profile', [UserProfileController::class, 'updateProfile'])->name('profile.update');
   Route::put('update/password', [UserProfileController::class, 'updatePassword'])->name('profile.update.password');
+  Route::resource('address', AdressController::class);
 });
 
 require __DIR__ . '/auth.php';
