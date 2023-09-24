@@ -71,7 +71,8 @@ class AdressController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $userAddress = UserAdress::findOrFail($id);
+        return view('frontend.dashboard.address.edit', compact('userAddress'));
     }
 
     /**
@@ -79,7 +80,31 @@ class AdressController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+        $request->validate([
+            'name' => ['required', 'max:200'],
+            'email' => ['required', 'max:200', 'email'],
+            'phone' => ['required', 'max:200',],
+            'country' => ['required', 'max:200'],
+            'stats' => ['required', 'max:200'],
+            'city' => ['required', 'max:200'],
+            'zip_code' => ['required', 'max:200'],
+            'address' => ['required'],
+        ]);
+        $userAddress = UserAdress::findOrFail($id);
+
+        $userAddress->user_id = Auth::user()->id;
+        $userAddress->name = $request->name;
+        $userAddress->email = $request->email;
+        $userAddress->phone = $request->phone;
+        $userAddress->country = $request->country;
+        $userAddress->stats = $request->stats;
+        $userAddress->city = $request->city;
+        $userAddress->zip_code = $request->zip_code;
+        $userAddress->address = $request->address;
+        $userAddress->save();
+        toastr('Adress Update Successfully', 'success', 'success');
+        return redirect()->route('user.address.index');
     }
 
     /**
