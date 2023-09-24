@@ -5,8 +5,8 @@
         <div class="container-fluid">
             @include('frontend.dashboard.layouts.sidebar')
             <!--=============================
-                                                                            DASHBOARD START
-                                                                          ==============================-->
+                                                                                        DASHBOARD START
+                                                                                      ==============================-->
             <section id="wsus__dashboard">
                 <div class="container-fluid">
                     <div class="dashboard_sidebar">
@@ -53,7 +53,7 @@
                                                     <div class="wsus__address_btn">
                                                         <a href="{{ route('user.address.edit', $userAddress->id) }}"
                                                             class="edit"><i class="fal fa-edit"></i> edit</a>
-                                                        <a href="{{ route('admin.slider.destroy', $userAddress->id) }}"
+                                                        <a href="{{ route('user.address.destroy', $userAddress->id) }}"
                                                             class="del delete-item"><i class="fal fa-trash-alt"></i>
                                                             delete</a>
                                                     </div>
@@ -73,8 +73,8 @@
                 </div>
             </section>
             <!--=============================
-                                                                            DASHBOARD START
-                                                                          ==============================-->
+                                                                                        DASHBOARD START
+                                                                                      ==============================-->
         </div>
     </section>
 @endsection
