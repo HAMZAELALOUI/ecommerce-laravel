@@ -9,46 +9,47 @@ use File;
 
 class UserProfileController extends Controller
 {
-public function index(){
-    return view ('frontend.dashboard.profile');
-}
+  public function index()
+  {
+    return view('frontend.dashboard.profile');
+  }
 
-public function updateProfile(Request $request){
-      $request->validate([
-        'name'=>['required','max:50'],
-        'email'=>['required','max:50','unique:users,email,'.Auth::user()->id],
-        'image'=>['image','max:2048']
-    ]);
-    $user=Auth::user();
-     if($request->hasFile('image')){
-        if(File::exists(public_path($user->image))){
-            File::delete(public_path($user->image));
-        }
-        $image=$request->image;
-        $imageName=rand().'_'.$image->getClientOriginalName();
-        $image->move(public_path('uploads'),$imageName);
-        $path="/uploads/".$imageName;
-        $user->image=$path;
-
-     }
-    $user->name =$request->name;
-    $user->email=$request->email; 
-    $user->save();
-         toastr()->success('Profile Updated Succesfuly');
-    return redirect()->back();
-
-}
-
-  public function updatePassword(Request $request){
+  public function updateProfile(Request $request)
+  {
     $request->validate([
-        'current_password'=>['required','current_password'],
-        'password'=>['required','confirmed','min:8'],
+      'name' => ['required', 'max:50'],
+      'email' => ['required', 'max:50', 'unique:users,email,' . Auth::user()->id],
+      'image' => ['image', 'max:2048']
+    ]);
+    $user = Auth::user();
+    if ($request->hasFile('image')) {
+      if (File::exists(public_path($user->image))) {
+        File::delete(public_path($user->image));
+      }
+      $image = $request->image;
+      $imageName = rand() . '_' . $image->getClientOriginalName();
+      $image->move(public_path('uploads'), $imageName);
+      $path = "/uploads/" . $imageName;
+      $user->image = $path;
+    }
+    $user->name = $request->name;
+    $user->email = $request->email;
+    $user->save();
+    toastr()->success('Profile Updated Succesfuly');
+    return redirect()->back();
+  }
+
+  public function updatePassword(Request $request)
+  {
+    $request->validate([
+      'current_password' => ['required', 'current_password'],
+      'password' => ['required', 'confirmed', 'min:8'],
     ]);
 
     $request->user()->update([
-         'password'=>bcrypt($request->password),
+      'password' => bcrypt($request->password),
     ]);
-  toastr()->success('Password Updated Succesfuly');
+    toastr()->success('Password Updated Succesfuly');
     return redirect()->back();
-}   
+  }
 }

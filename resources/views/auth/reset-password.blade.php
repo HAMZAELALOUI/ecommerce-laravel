@@ -1,9 +1,12 @@
 @extends('frontend.layouts.master')
+@section('title')
+    {{ $settings->site_name }}||reset password
+@endsection
 
 @section('content')
-         <!--============================
-        BREADCRUMB START
-    ==============================-->
+    <!--============================
+            BREADCRUMB START
+        ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -20,26 +23,27 @@
         </div>
     </section>
     <!--============================
-        BREADCRUMB END
-    ==============================-->
+            BREADCRUMB END
+        ==============================-->
 
 
     <!--============================
-        CHANGE PASSWORD START
-    ==============================-->
+            CHANGE PASSWORD START
+        ==============================-->
     <section id="wsus__login_register">
         <div class="container">
             <div class="row">
                 <div class="col-xl-5 col-md-10 col-lg-7 m-auto">
-                    <form method="POST" action="{{ route('password.store')}}">
-                      @csrf
-                      <div class="wsus__change_password">
-                          <h4>reset password</h4>
-                          <!-- Password Reset Token -->
+                    <form method="POST" action="{{ route('password.store') }}">
+                        @csrf
+                        <div class="wsus__change_password">
+                            <h4>reset password</h4>
+                            <!-- Password Reset Token -->
                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
                             <div class="wsus__single_pass">
                                 <label>Email</label>
-                                <input id="email" name="email" type="email"  value="{{old('email', $request->email)}}">
+                                <input id="email" name="email" type="email"
+                                    value="{{ old('email', $request->email) }}">
                             </div>
                             <div class="wsus__single_pass">
                                 <label>new password</label>
@@ -47,7 +51,8 @@
                             </div>
                             <div class="wsus__single_pass">
                                 <label>confirm password</label>
-                                <input type="password" placeholder="Confirm Password" id="password_confirmation"  name="password_confirmation">
+                                <input type="password" placeholder="Confirm Password" id="password_confirmation"
+                                    name="password_confirmation">
                             </div>
                             <button class="common_btn" type="submit">submit</button>
                         </div>
@@ -57,6 +62,6 @@
         </div>
     </section>
     <!--============================
-        CHANGE PASSWORD END
-    ==============================-->
+            CHANGE PASSWORD END
+        ==============================-->
 @endsection

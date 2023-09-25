@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ $settings->site_name }} || edit brand
+@endsection
 @section('content')
     <section class="section">
         <div class="section-header">

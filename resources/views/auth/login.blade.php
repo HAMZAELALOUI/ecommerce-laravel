@@ -1,9 +1,11 @@
 @extends('frontend..layouts.master')
-
+@section('title')
+    {{ $settings->site_name }}||Login
+@endsection
 @section('content')
-        <!--============================
-         BREADCRUMB START
-    ==============================-->
+    <!--============================
+                     BREADCRUMB START
+                ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -20,13 +22,13 @@
         </div>
     </section>
     <!--============================
-        BREADCRUMB END
-    ==============================-->
+                    BREADCRUMB END
+                ==============================-->
 
 
     <!--============================
-       LOGIN/REGISTER PAGE START
-    ==============================-->
+                   LOGIN/REGISTER PAGE START
+                ==============================-->
     <section id="wsus__login_register">
         <div class="container">
             <div class="row">
@@ -48,11 +50,12 @@
                             <div class="tab-pane fade show active" id="pills-homes" role="tabpanel"
                                 aria-labelledby="pills-home-tab2">
                                 <div class="wsus__login">
-                                    <form action="{{route('login')}}" method="POST">
+                                    <form action="{{ route('login') }}" method="POST">
                                         @csrf
                                         <div class="wsus__login_input">
                                             <i class="fas fa-user-tie"></i>
-                                            <input type="email" placeholder="Email" id="email"  value="{{old('email')}}" name="email">
+                                            <input type="email" placeholder="Email" id="email"
+                                                value="{{ old('email') }}" name="email">
                                         </div>
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
@@ -60,10 +63,12 @@
                                         </div>
                                         <div class="wsus__login_save">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="remember_me" name="remember">
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">Remember me</label>
+                                                <input class="form-check-input" type="checkbox" id="remember_me"
+                                                    name="remember">
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Remember
+                                                    me</label>
                                             </div>
-                                            <a class="forget_p" href="{{route('password.request')}}">forget password ?</a>
+                                            <a class="forget_p" href="{{ route('password.request') }}">forget password ?</a>
                                         </div>
                                         <button class="common_btn" type="submit">login</button>
                                         {{-- <p class="social_text">Sign in with social account</p> --}}
@@ -80,15 +85,17 @@
                             <div class="tab-pane fade" id="pills-profiles" role="tabpanel"
                                 aria-labelledby="pills-profile-tab2">
                                 <div class="wsus__login">
-                                    <form method="POST" action="{{route('register')}}">
+                                    <form method="POST" action="{{ route('register') }}">
                                         @csrf
                                         <div class="wsus__login_input">
                                             <i class="fas fa-user-tie"></i>
-                                            <input id="name" name="name" value="{{old('name')}}" type="text" placeholder="Name">
+                                            <input id="name" name="name" value="{{ old('name') }}" type="text"
+                                                placeholder="Name">
                                         </div>
                                         <div class="wsus__login_input">
                                             <i class="far fa-envelope"></i>
-                                            <input id="email" name="email" type="email" placeholder="Email" value="{{old('email')}}">
+                                            <input id="email" name="email" type="email" placeholder="Email"
+                                                value="{{ old('email') }}">
                                         </div>
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
@@ -96,9 +103,10 @@
                                         </div>
                                         <div class="wsus__login_input">
                                             <i class="fas fa-key"></i>
-                                            <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password">
+                                            <input id="password_confirmation" type="password" name="password_confirmation"
+                                                placeholder="Confirm Password">
                                         </div>
-                                      
+
                                         <button class="common_btn mt-4" type="submit">signup</button>
                                     </form>
                                 </div>
@@ -110,6 +118,6 @@
         </div>
     </section>
     <!--============================
-       LOGIN/REGISTER PAGE END
-    ==============================-->
+                   LOGIN/REGISTER PAGE END
+                ==============================-->
 @endsection

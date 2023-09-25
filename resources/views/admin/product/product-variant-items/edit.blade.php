@@ -1,4 +1,7 @@
 @extends('admin.layouts.master')
+@section('title')
+    {{ $settings->site_name }} || edit variant etem
+@endsection
 
 @section('content')
     <section class="section">

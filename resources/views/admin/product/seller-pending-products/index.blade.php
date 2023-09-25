@@ -1,5 +1,7 @@
 @extends('admin.layouts.master')
-
+@section('title')
+    {{ $settings->site_name }} || Pending Products
+@endsection
 @section('content')
     <section class="section">
         <div class="section-header">

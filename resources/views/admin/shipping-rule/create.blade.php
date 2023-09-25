@@ -1,4 +1,7 @@
 @extends('admin.layouts.master')
+@section('title')
+    {{ $settings->site_name }} || create shipping rule
+@endsection
 
 @section('content')
     <section class="section">
