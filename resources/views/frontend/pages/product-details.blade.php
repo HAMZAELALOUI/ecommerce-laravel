@@ -5,8 +5,8 @@
 
 @section('content')
     <!--==========================
-                                                                                                                                                                                                                                                                                                                                                                                      PRODUCT MODAL VIEW START
-                                                                                                                                                                                                                                                                                                                                                                                    ===========================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              PRODUCT MODAL VIEW START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ===========================-->
     <section class="product_popup_modal">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -144,13 +144,13 @@
         </div>
     </section>
     <!--==========================
-                                                                                                                                                                                                                                                                                                                                                                                    PRODUCT MODAL VIEW END
-                                                                                                                                                                                                                                                                                                                                                                                  ===========================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            PRODUCT MODAL VIEW END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ===========================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                      BREADCRUMB START
-                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              BREADCRUMB START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -168,13 +168,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                      BREADCRUMB END
-                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              BREADCRUMB END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                      PRODUCT DETAILS START
-                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              PRODUCT DETAILS START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__product_details">
         <div class="container">
             <div class="wsus__details_bg">
@@ -243,41 +243,47 @@
                                 <h5>offer ending time : </h5>
                                 <div class="simply-countdown simply-countdown-one-me"></div>
                             </div>
-                            <div class="wsus__selectbox">
-                                <div class="row">
-                                    @foreach ($product->variant as $variant)
-                                        <div class="col-xl-6 col-sm-6">
-                                            <h5 class="mb-2">{{ $variant->name }} :</h5>
-                                            <select class="select_2" name="state">
-                                                @foreach ($variant->productVariantItems as $productVariantItem)
-                                                    <option {{ $productVariantItem->is_default == 1 ? 'selected' : '' }}
-                                                        value="{{ $productVariantItem->id }}">
-                                                        {{ $productVariantItem->name }}
-                                                        ({{ $settings->currency_icon }} {{ $productVariantItem->price }})
-                                                    </option>
-                                                @endforeach
+                            <form class="shopping__cart_form">
+                                <div class="wsus__selectbox">
+                                    <div class="row">
+                                        @foreach ($product->variant as $variant)
+                                            <div class="col-xl-6 col-sm-6">
+                                                <h5 class="mb-2">{{ $variant->name }} :</h5>
+                                                <select class="select_2" name="variants[]">
+                                                    @foreach ($variant->productVariantItems as $productVariantItem)
+                                                        <option
+                                                            {{ $productVariantItem->is_default == 1 ? 'selected' : '' }}
+                                                            value="{{ $productVariantItem->id }}">
+                                                            {{ $productVariantItem->name }}
+                                                            ({{ $settings->currency_icon }}
+                                                            {{ $productVariantItem->price }})
+                                                        </option>
+                                                    @endforeach
 
-                                            </select>
-                                        </div>
-                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endforeach
 
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="wsus__quentity">
-                                <h5>quentity :</h5>
-                                <form class="select_number">
-                                    <input class="number_area" type="text" min="1" max="100"
-                                        value="1" />
-                                </form>
-                            </div>
+                                <div class="wsus__quentity">
+                                    <h5>quentity :</h5>
+                                    <div class="select_number">
+                                        <input class="number_area" type="text" min="1" max="100"
+                                            value="1" name="qty" />
+                                    </div>
+                                </div>
 
-                            <ul class="wsus__button_area">
-                                <li><a class="add_cart" href="#">add to cart</a></li>
-                                <li><a class="buy_now" href="#">buy now</a></li>
-                                <li><a href="#"><i class="fal fa-heart"></i></a></li>
-                                <li><a href="#"><i class="far fa-random"></i></a></li>
-                            </ul>
+                                <ul class="wsus__button_area">
+                                    <li><button type="submit" class="add_cart" href="#">add to cart</button></li>
+                                    <li><a class="buy_now" href="#">buy now</a></li>
+                                    <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="far fa-random"></i></a></li>
+                                </ul>
+
+                            </form>
+
                             <p class="brand_model"><span>brand : </span> {{ $product->brand->name }}</p>
 
                         </div>
@@ -922,14 +928,14 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                      PRODUCT DETAILS END
-                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              PRODUCT DETAILS END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                      RELATED PRODUCT START
-                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
-    <section id="wsus__flash_sell">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              RELATED PRODUCT START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
+    {{-- <section id="wsus__flash_sell">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
@@ -1090,10 +1096,10 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                      RELATED PRODUCT END
-                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              RELATED PRODUCT END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 @endsection
 
 @push('scripts')
@@ -1104,6 +1110,21 @@
                 year: {{ date('Y', strtotime($flashSaleDate->end_date)) }},
                 month: {{ date('m', strtotime($flashSaleDate->end_date)) }},
                 day: {{ date('d', strtotime($flashSaleDate->end_date)) }},
+            });
+
+
+            // Shopping Cart
+            $('.shopping__cart_form').on('submit', function(e) {
+                e.preventDefault()
+                let formData = $(this).serialize();
+                $.ajax({
+                    method: 'POST',
+                    data: formData,
+                    url: "{{ route('add-to-cart') }}",
+                    success: function(data) {},
+                    error: function(data) {},
+                })
+
             });
         })
     </script>
