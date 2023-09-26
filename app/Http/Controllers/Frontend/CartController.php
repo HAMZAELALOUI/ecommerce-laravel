@@ -31,15 +31,27 @@ class CartController extends Controller
         } else {
             $productTotalAmount = ($variantTotalAmount + $product->price);
         }
-        $cartData = [];
-        $cartData['id'] = $product->id;
-        $cartData['name'] = $product->name;
-        $cartData['qty'] = $request->qty;
-        $cartData['price'] = $productTotalAmount * $request->qty;
-        $cartData['weight'] = 10;
-        $cartData['options']['variant'] = $variant;
-        $cartData['options']['image'] = $product->thumb_image;
-        $cartData['options']['slug'] = $product->slug;
+        // $cartData = [];
+        // $cartData['id'] = $product->id;
+        // $cartData['name'] = $product->name;
+        // $cartData['qty'] = $request->qty;
+        // $cartData['price'] = $productTotalAmount * $request->qty;
+        // $cartData['weight'] = 10;
+        // $cartData['options']['variant'] = $variant;
+        // $cartData['options']['image'] = $product->thumb_image;
+        // $cartData['options']['slug'] = $product->slug;
+        $cartData = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'qty' => $request->qty,
+            'price' => $productTotalAmount * $request->qty,
+            'weight' => 10,
+            'options' => [
+                'variant' => $variant,
+                'image' => $product->thumb_image,
+                'slug' => $product->slug,
+            ],
+        ];
 
         Cart::add($cartData);
         return response(['status' => 'success', 'message' => 'Added to cart Successfully!!']);
