@@ -9461,3 +9461,14 @@ a:not([href]):not([class]):hover {
     border: 1px solid #08c;
     margin-right: 10px;
 }
+
+.product_qty_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product_qty_wrapper > .product-qty {
+    width: 43px;
+    height: 36px;
+    padding-left: 5px;
+}

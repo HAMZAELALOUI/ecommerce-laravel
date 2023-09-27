@@ -65,4 +65,11 @@ class CartController extends Controller
         $cartItems = Cart::content();
         return view('frontend.pages.cart-details', compact('cartItems'));
     }
+
+    public function updateProductQTY(Request $request)
+    {
+        // dd($request->all());
+        Cart::update($request->rowId, $request->quantity);
+        return response(['status' => 'success', 'message' => 'Quantity Updated Sucessfully']);
+    }
 }
