@@ -42,8 +42,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
 
-/** add to cart controller  */
+/** Cart  Routes */
 Route::post('add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('cart-details', [CartController::class, 'cartDeatails'])->name('cart-details');
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {
   Route::get('dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
