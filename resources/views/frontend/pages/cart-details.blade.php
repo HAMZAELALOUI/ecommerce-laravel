@@ -5,8 +5,8 @@
 
 @section('content')
     <!--============================
-            BREADCRUMB START
-        ==============================-->
+                                                                                                                                                                                        BREADCRUMB START
+                                                                                                                                                                                    ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -24,13 +24,13 @@
         </div>
     </section>
     <!--============================
-          BREADCRUMB END
-      ==============================-->
+                                                                                                                                                                                      BREADCRUMB END
+                                                                                                                                                                                  ==============================-->
 
 
     <!--============================
-          CART VIEW PAGE START
-      ==============================-->
+                                                                                                                                                                                      CART VIEW PAGE START
+                                                                                                                                                                                  ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
@@ -49,139 +49,62 @@
                                         </th>
 
                                         <th class="wsus__pro_status">
-                                            status
+                                            Unit Price
+                                        </th>
+                                        <th class="wsus__pro_status">
+                                            Total
                                         </th>
 
                                         <th class="wsus__pro_select">
                                             quantity
                                         </th>
 
-                                        <th class="wsus__pro_tk">
-                                            price
-                                        </th>
+
 
                                         <th class="wsus__pro_icon">
                                             <a href="#" class="common_btn">clear cart</a>
                                         </th>
                                     </tr>
-                                    <tr class="d-flex">
-                                        <td class="wsus__pro_img"><img src="images/pro9_9.jpg" alt="product"
-                                                class="img-fluid w-100">
-                                        </td>
+                                    @foreach ($cartItems as $item)
+                                        <tr class="d-flex">
+                                            <td class="wsus__pro_img"><img src="{{ $item->options->image }}" alt="product"
+                                                    class="img-fluid w-100">
+                                            </td>
 
-                                        <td class="wsus__pro_name">
-                                            <p>men's fashion sholder leather bag</p>
-                                            <span>color: red</span>
-                                            <span>size: XL</span>
-                                        </td>
+                                            <td class="wsus__pro_name">
+                                                <p>{!! $item->name !!}</p>
+                                                @foreach ($item->options->variant as $key => $variantItem)
+                                                    <div class="">
+                                                        <span>{{ $key }}:{{ $variantItem['name'] }} (
+                                                            {{ $settings->currency_icon . $variantItem['price'] }} )
+                                                            <span>
+                                                    </div>
+                                                @endforeach
+                                            </td>
 
-                                        <td class="wsus__pro_status">
-                                            <p>in stock</p>
-                                        </td>
+                                            <td class="wsus__pro_status">
+                                                <p>{{ $settings->currency_icon . $item->price }}</p>
+                                            </td>
+                                            <td class="wsus__pro_status">
+                                                <p>{{ $settings->currency_icon . ($item->price + $item->options->Variant_total) }}
+                                                </p>
+                                            </td>
 
-                                        <td class="wsus__pro_select">
-                                            <form class="select_number">
-                                                <input class="number_area" type="text" min="1" max="100"
-                                                    value="1" />
-                                            </form>
-                                        </td>
+                                            <td class="wsus__pro_select">
+                                                <form class="select_number">
+                                                    <input class="number_area" type="text" min="1" max="100"
+                                                        value="1" />
+                                                </form>
+                                            </td>
 
-                                        <td class="wsus__pro_tk">
-                                            <h6>$180,00</h6>
-                                        </td>
 
-                                        <td class="wsus__pro_icon">
-                                            <a href="#"><i class="far fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr class="d-flex">
-                                        <td class="wsus__pro_img">
-                                            <img src="images/pro4.jpg" alt="product" class="img-fluid w-100">
-                                        </td>
 
-                                        <td class="wsus__pro_name">
-                                            <p>mean's casula fashion watch</p>
-                                            <span>color: black</span>
-                                        </td>
+                                            <td class="wsus__pro_icon">
+                                                <a href="#"><i class="far fa-times"></i></a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                                        <td class="wsus__pro_status">
-                                            <p>in stock</p>
-                                        </td>
-
-                                        <td class="wsus__pro_select">
-                                            <form class="select_number">
-                                                <input class="number_area" type="text" min="1" max="100"
-                                                    value="1" />
-                                            </form>
-                                        </td>
-
-                                        <td class="wsus__pro_tk">
-                                            <h6>$140,00</h6>
-                                        </td>
-
-                                        <td class="wsus__pro_icon">
-                                            <a href="#"><i class="far fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr class="d-flex">
-                                        <td class="wsus__pro_img">
-                                            <img src="images/blazer_1.jpg" alt="product" class="img-fluid w-100">
-                                        </td>
-
-                                        <td class="wsus__pro_name">
-                                            <p>product name and details</p>
-                                            <span>color: black</span>
-                                            <span>size: M</span>
-                                        </td>
-
-                                        <td class="wsus__pro_status">
-                                            <span>almost gone</span>
-                                        </td>
-
-                                        <td class="wsus__pro_select">
-                                            <form class="select_number">
-                                                <input class="number_area" type="text" min="1" max="100"
-                                                    value="1" />
-                                            </form>
-                                        </td>
-
-                                        <td class="wsus__pro_tk">
-                                            <h6>$220,00</h6>
-                                        </td>
-
-                                        <td class="wsus__pro_icon">
-                                            <a href="#"><i class="far fa-times"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr class="d-flex">
-                                        <td class="wsus__pro_img">
-                                            <img src="images/pro2.jpg" alt="product" class="img-fluid w-100">
-                                        </td>
-                                        <td class="wsus__pro_name">
-                                            <p>product name and details</p>
-                                            <span>color: black</span>
-                                            <span>size: L</span>
-                                        </td>
-
-                                        <td class="wsus__pro_status">
-                                            <p>in stock</p>
-                                        </td>
-
-                                        <td class="wsus__pro_select">
-                                            <form class="select_number">
-                                                <input class="number_area" type="text" min="1" max="100"
-                                                    value="1" />
-                                            </form>
-                                        </td>
-
-                                        <td class="wsus__pro_tk">
-                                            <h6>$180.00</h6>
-                                        </td>
-
-                                        <td class="wsus__pro_icon">
-                                            <a href="#"><i class="far fa-times"></i></a>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -238,6 +161,6 @@
         </div>
     </section>
     <!--============================
-            CART VIEW PAGE END
-      ==============================-->
+                                                                                                                                                                                        CART VIEW PAGE END
+                                                                                                                                                                                  ==============================-->
 @endsection

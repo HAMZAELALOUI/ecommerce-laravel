@@ -35,11 +35,12 @@ class CartController extends Controller
         // $cartData['id'] = $product->id;
         // $cartData['name'] = $product->name;
         // $cartData['qty'] = $request->qty;
-        // $cartData['price'] = $productTotalAmount * $request->qty;
+        // $cartData['price'] =  $productPrice * $request->qty;
         // $cartData['weight'] = 10;
         // $cartData['options']['variant'] = $variant;
         // $cartData['options']['image'] = $product->thumb_image;
         // $cartData['options']['slug'] = $product->slug;
+        // $cartData['options']['Variant_total'] = $variantTotalAmount;
         $cartData = [
             'id' => $product->id,
             'name' => $product->name,
@@ -53,7 +54,6 @@ class CartController extends Controller
                 'Variant_total' => $variantTotalAmount,
             ],
         ];
-        dd($cartData);
         Cart::add($cartData);
         return response(['status' => 'success', 'message' => 'Added to cart Successfully!!']);
     }
@@ -62,6 +62,7 @@ class CartController extends Controller
     /** Show Cart Page  */
     public function cartDeatails()
     {
-        return view('frontend.pages.cart-details');
+        $cartItems = Cart::content();
+        return view('frontend.pages.cart-details', compact('cartItems'));
     }
 }
