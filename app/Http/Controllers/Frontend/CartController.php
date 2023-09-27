@@ -66,10 +66,20 @@ class CartController extends Controller
         return view('frontend.pages.cart-details', compact('cartItems'));
     }
 
+    /**Update Product Quantity */
     public function updateProductQTY(Request $request)
     {
         // dd($request->all());
         Cart::update($request->rowId, $request->quantity);
-        return response(['status' => 'success', 'message' => 'Quantity Updated Sucessfully']);
+        $total = $this->updateTotalPrice($request->rowId);
+        return response(['status' => 'success', 'message' => 'Quantity Updated Sucessfully', 'total_price' => $total]);
+    }
+
+    /** update Total Price */
+    public function updateTotalPrice($rowId)
+    {
+        $product = Cart::get($rowId);
+        $total = ($product->price + $product->options->Variant_total) * $product->qty;
+        return $total;
     }
 }

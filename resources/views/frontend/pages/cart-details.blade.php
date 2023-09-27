@@ -5,8 +5,8 @@
 
 @section('content')
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        BREADCRUMB START
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                BREADCRUMB START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -24,13 +24,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      BREADCRUMB END
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              BREADCRUMB END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      CART VIEW PAGE START
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              CART VIEW PAGE START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
@@ -83,11 +83,12 @@
                                             </td>
 
                                             <td class="wsus__pro_status">
-                                                <p>{{ $settings->currency_icon . $item->price }}</p>
+                                                <h6>{{ $settings->currency_icon . $item->price }}</h6>
                                             </td>
                                             <td class="wsus__pro_status">
-                                                <p>{{ $settings->currency_icon . ($item->price + $item->options->Variant_total) }}
-                                                </p>
+                                                <h6 id="{{ $item->rowId }}">
+                                                    {{ $settings->currency_icon . ($item->price + $item->options->Variant_total) * $item->qty }}
+                                                </h6>
                                             </td>
 
                                             <td class="wsus__pro_select">
@@ -164,8 +165,8 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        CART VIEW PAGE END
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                CART VIEW PAGE END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ==============================-->
 @endsection
 
 
@@ -186,6 +187,10 @@
                     },
                     success: function(data) {
                         if (data.status == 'success') {
+                            let produtId = '#' + rowId;
+                            let totalAmount = "{{ $settings->currency_icon }}" + data
+                                .total_price
+                            $(produtId).text(totalAmount)
                             toastr.success(data.message);
                         }
 
