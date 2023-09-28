@@ -144,8 +144,11 @@
     <script src="{{ asset('frontend/js/isotope.pkgd.min.js') }}"></script>
     <!--venobox js-->
     <script src="{{ asset('frontend/js/venobox.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!--classycountdown js-->
     <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
+    <!--Sweet ALert js-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 

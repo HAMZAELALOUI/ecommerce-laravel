@@ -5,8 +5,8 @@
 
 @section('content')
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            BREADCRUMB START
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            BREADCRUMB START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -24,23 +24,23 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          BREADCRUMB END
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          BREADCRUMB END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          CART VIEW PAGE START
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          CART VIEW PAGE START
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
     <section id="wsus__cart_view">
         <div class="container">
             <div class="row">
                 <div class="col-xl-9">
                     <div class="wsus__cart_list">
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-hidden">
                             <table>
                                 <tbody>
-                                    <tr class="d-flex">
-                                        <th class="wsus__pro_img">
+                                    <tr class="d-flex ">
+                                        <th class="wsus__pro_img" style="width: 105px">
                                             product item
                                         </th>
 
@@ -62,13 +62,13 @@
 
 
                                         <th class="wsus__pro_icon">
-                                            <a href="#" class="common_btn">clear cart</a>
+                                            <a href="#" class="common_btn clear-cart">clear cart</a>
                                         </th>
                                     </tr>
                                     @foreach ($cartItems as $item)
                                         <tr class="d-flex">
                                             <td class="wsus__pro_img"><img src="{{ $item->options->image }}" alt="product"
-                                                    class="img-fluid w-100">
+                                                    class="img-fluid " width="90">
                                             </td>
 
                                             <td class="wsus__pro_name">
@@ -105,10 +105,18 @@
 
 
                                             <td class="wsus__pro_icon">
-                                                <a href="#"><i class="far fa-times"></i></a>
+                                                <a href="{{ route('cart.remove-item', $item->rowId) }}"><i
+                                                        class="far fa-times"></i></a>
                                             </td>
                                         </tr>
                                     @endforeach
+                                    @if (count($cartItems) == 0)
+                                        <tr class="d-flex ">
+                                            <td class="wsus__pro_img w-100">
+                                                Cart is Empty!!
+                                            </td>
+                                        </tr>
+                                    @endif
 
                                 </tbody>
                             </table>
@@ -166,13 +174,15 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            CART VIEW PAGE END
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            CART VIEW PAGE END
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ==============================-->
 @endsection
 
 
 @push('scripts')
     <script>
+        var cartItemCount = {{ count($cartItems) }};
+
         $(document).ready(function() {
 
             // Increment Cart Quantity
@@ -204,6 +214,7 @@
 
                 })
             })
+
             // Decrement Cart Quantity
             $('.product-decrement').on('click', function() {
                 let input = $(this).siblings('.product-qty');
@@ -235,6 +246,50 @@
                     }
 
                 })
+            })
+            // clear cart 
+            $('.clear-cart').on('click', function(e) {
+                e.preventDefault();
+                // Function to enable/disable the "Clear Cart" button
+                function toggleClearCartButton() {
+                    if (cartItemCount === 0) {
+                        $('.clear-cart').prop('disabled', true);
+                    } else {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "This Action will clear the cart",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, Clear it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: "{{ route('clear-cart') }}",
+                                    success: function(data) {
+
+                                        toastr.success(data.message);
+                                        if (data.status == 'success') {
+                                            window.location.reload();
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.log(error);
+                                    },
+                                })
+
+                            }
+                        })
+
+                    }
+                }
+
+                // Call the function initially to set the button state
+                toggleClearCartButton();
+
+
             })
 
         })
