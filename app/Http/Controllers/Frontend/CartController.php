@@ -94,4 +94,9 @@ class CartController extends Controller
         Cart::remove($rowId);
         return redirect()->back();
     }
+
+    public function getCountCart()
+    {
+        return  Cart::content()->count();
+    }
 }
