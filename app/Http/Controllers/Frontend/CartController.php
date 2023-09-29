@@ -99,4 +99,9 @@ class CartController extends Controller
     {
         return  Cart::content()->count();
     }
+
+    public function addSideBarCartProduct()
+    {
+        return Cart::content();
+    }
 }
