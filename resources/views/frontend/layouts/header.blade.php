@@ -51,11 +51,11 @@
         <ul class="mini_cart_wrapper">
 
             @foreach (Cart::content() as $sideBarProduct)
-                <li>
+                <li id="mini_cart_{{ $sideBarProduct->rowId }}">
                     <div class="wsus__cart_img">
                         <a href="#"><img src="{{ asset($sideBarProduct->options->image) }}" alt="product"
                                 class="img-fluid w-100" style="height: 70px; object-fit:cover;"></a>
-                        <a class="wsis__del_icon remove_side_products" data-rowid="{{ $sideBarProduct->rowId }}"
+                        <a class="wsis__del_icon remove_side_bar_product" data-id="{{ $sideBarProduct->rowId }}"
                             href="#"><i class="fas fa-minus-circle"></i></a>
                     </div>
                     <div class="wsus__cart_text">

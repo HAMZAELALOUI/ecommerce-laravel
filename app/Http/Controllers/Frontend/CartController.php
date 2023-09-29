@@ -104,4 +104,10 @@ class CartController extends Controller
     {
         return Cart::content();
     }
+
+    public function removeSideBarCartProduct(Request $request)
+    {
+        Cart::remove($request->rowId);
+        return response(['status' => 'success', 'message' => 'product removed successfully']);
+    }
 }
