@@ -58,3 +58,12 @@ function productType($type): string
       break;
   }
 }
+
+function calcSubTotalProduct()
+{
+  $total = 0;
+  foreach (\Cart::content() as $product) {
+    $total = ($product->price + $product->options->Variant_total) * $product->qty;
+  }
+  return $total;
+}

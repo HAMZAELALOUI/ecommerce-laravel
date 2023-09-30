@@ -62,16 +62,25 @@
                         <a class="wsus__cart_title"
                             href="{{ route('product-details', $sideBarProduct->options->slug) }}">{{ $sideBarProduct->name }}</a>
                         <p>{{ $settings->currency_icon }}{{ $sideBarProduct->price }}</p>
+                        <small id="variant_show">Variant Total :
+                            {{ $settings->currency_icon }}{{ $sideBarProduct->options->Variant_total }} </small><br>
+                        <small id="variant_show">Quantity:
+                            {{ $sideBarProduct->qty }} </small>
                     </div>
                 </li>
             @endforeach
 
 
         </ul>
-        <h5>sub total <span>$3540</span></h5>
-        <div class="wsus__minicart_btn_area">
-            <a class="common_btn" href="{{ route('cart-details') }}">view cart</a>
-            <a class="common_btn" href="check_out.html">checkout</a>
+
+        <div class="mini_cart_actions {{ Cart::content()->count() == 0 ? 'd-none' : '' }}">
+
+            <h5>sub total <span
+                    id="subtotal_sidebar_product">{{ $settings->currency_icon . calcSubTotalProduct() }}</span></h5>
+            <div class="wsus__minicart_btn_area {{ Cart::content()->count() == 0 ? 'd-none' : '' }}">
+                <a class="common_btn" href="{{ route('cart-details') }}">view cart</a>
+                <a class="common_btn" href="check_out.html">checkout</a>
+            </div>
         </div>
     </div>
 

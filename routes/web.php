@@ -51,6 +51,7 @@ Route::get('cart/remove-item/{rowId}', [CartController::class, 'RemoveItem'])->n
 Route::get('count-cart', [CartController::class, 'getCountCart'])->name('count-cart');
 Route::get('add-product-side-bar', [CartController::class, 'addSideBarCartProduct'])->name('add-product-side-bar');
 Route::post('remove-product-side-bar', [CartController::class, 'removeSideBarCartProduct'])->name('remove-product-side-bar');
+Route::get('sub-total-product', [CartController::class, 'calcSubTotalProduct'])->name('sub-total-product');
 
 
 Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'user', 'as' => 'user.'], function () {

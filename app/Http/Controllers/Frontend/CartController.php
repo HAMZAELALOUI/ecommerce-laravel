@@ -82,6 +82,15 @@ class CartController extends Controller
         $total = ($product->price + $product->options->Variant_total) * $product->qty;
         return $total;
     }
+    /** Calcu;ate The Sub Toatal  */
+    public function calcSubTotalProduct()
+    {
+        $total = 0;
+        foreach (Cart::content() as $product) {
+            $total += $this->updateTotalPrice($product->rowId);
+        }
+        return $total;
+    }
 
     public function clearCart()
     {
