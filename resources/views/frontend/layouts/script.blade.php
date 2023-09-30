@@ -61,8 +61,8 @@
                </li>`;
                     }
                     $('.mini_cart_wrapper').html(html);
-
                     calcSubTotalProduct();
+                    $('.mini_cart_actions').removeClass('d-none');
 
                 },
                 error: function(data) {},
@@ -113,6 +113,9 @@
             })
         }
 
-
+        if ($('.mini_cart_wrapper').find('li').length === 0) {
+            $('.mini_cart_wrapper').html(
+                '<li class="text-center"><code>Cart is empty!</code></li>');
+        }
     })
 </script>

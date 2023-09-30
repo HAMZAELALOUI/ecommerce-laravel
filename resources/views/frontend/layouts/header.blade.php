@@ -77,7 +77,7 @@
 
             <h5>sub total <span
                     id="subtotal_sidebar_product">{{ $settings->currency_icon . calcSubTotalProduct() }}</span></h5>
-            <div class="wsus__minicart_btn_area {{ Cart::content()->count() == 0 ? 'd-none' : '' }}">
+            <div class="wsus__minicart_btn_area ">
                 <a class="common_btn" href="{{ route('cart-details') }}">view cart</a>
                 <a class="common_btn" href="check_out.html">checkout</a>
             </div>
@@ -88,3 +88,4 @@
 <!--============================
       HEADER END
   ==============================-->
+{{-- @include('frontend.layouts.script') --}}
