@@ -5,7 +5,7 @@
 
 @section('content')
     <!--============================
-                                                                                                                                                                                                                                           ==============================-->
+                                                                                                                                                                                                                                                           ==============================-->
     <section id="wsus__breadcrumb">
         <div class="wsus_breadcrumb_overlay">
             <div class="container">
@@ -22,13 +22,13 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                          BREADCRUMB END
-                                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                          BREADCRUMB END
+                                                                                                                                                                                                                                                                      ==============================-->
 
 
     <!--============================
-                                                                                                                                                                                                                                                          DAILY DEALS DETAILS START
-                                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                          DAILY DEALS DETAILS START
+                                                                                                                                                                                                                                                                      ==============================-->
     <section id="wsus__daily_deals">
         <div class="container">
             <div class="wsus__offer_details_area">
@@ -70,63 +70,68 @@
                         </div>
                     </div>
                 </div>
+                <form class="shopping__cart_form">
+                    <div class="row">
+                        @foreach ($flashSaleItems as $flashSaleItem)
+                            @php
+                                $product = \App\Models\Product::find($flashSaleItem->product_id);
+                                // $category = \App\Models\category::find($product->category_id);
+                            @endphp
+                            <div class="col-xl-3">
+                                <div class="wsus__product_item">
+                                    <span class="wsus__new">{{ productType($product->product_type) }} </span>
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                <div class="row">
-                    @foreach ($flashSaleItems as $flashSaleItem)
-                        @php
-                            $product = \App\Models\Product::find($flashSaleItem->product_id);
-                            // $category = \App\Models\category::find($product->category_id);
-                        @endphp
-                        <div class="col-xl-3">
-                            <div class="wsus__product_item">
-                                <span class="wsus__new">{{ productType($product->product_type) }} </span>
 
-                                @if (checkDiscount($product))
-                                    <span
-                                        class="wsus__minus">{{ calculatDiscountPercentage($product->price, $product->offer_price) }}%</span>
-                                @endif
-                                <a class="wsus__pro_link" href="{{ route('product-details', $product->slug) }}">
-                                    <img src="{{ asset($product->thumb_image) }}" alt="product"
-                                        class="img-fluid w-100 img_1" />
-                                    <img src="
+                                    @if (checkDiscount($product))
+                                        <span
+                                            class="wsus__minus">{{ calculatDiscountPercentage($product->price, $product->offer_price) }}%</span>
+                                    @endif
+                                    <a class="wsus__pro_link" href="{{ route('product-details', $product->slug) }}">
+                                        <img src="{{ asset($product->thumb_image) }}" alt="product"
+                                            class="img-fluid w-100 img_1" />
+                                        <img src="
                                 @if (isset($product->imageProductGalleries[0]->image)) {{ asset($product->imageProductGalleries[0]->image) }}
                                  @else 
                                  {{ asset($product->thumb_image) }} @endif
                                 "
-                                        alt="product" class="img-fluid w-100 img_2" />
-                                </a>
-                                <ul class="wsus__single_pro_icon">
-                                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                class="far fa-eye"></i></a></li>
-                                    <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="far fa-random"></i></a>
-                                </ul>
-                                <div class="wsus__product_details">
-                                    <a class="wsus__category" href="#">{{ $product->category->name }}</a>
-                                    <p class="wsus__pro_rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(133 review)</span>
-                                    </p>
-                                    <a class="wsus__pro_name"
-                                        href="{{ route('product-details', $product->slug) }}">{{ $product->name }}</a>
-                                    @if (checkDiscount($product))
-                                        <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->offer_price }}
-                                            <del>{{ $settings->currency_icon }} {{ $product->price }}</del>
+                                            alt="product" class="img-fluid w-100 img_2" />
+                                    </a>
+                                    <ul class="wsus__single_pro_icon">
+                                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                    class="far fa-eye"></i></a></li>
+                                        <li><a href="#"><i class="far fa-heart"></i></a></li>
+                                        <li><a href="#"><i class="far fa-random"></i></a>
+                                    </ul>
+                                    <div class="wsus__product_details">
+                                        <a class="wsus__category" href="#">{{ $product->category->name }}</a>
+                                        <p class="wsus__pro_rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span>(133 review)</span>
                                         </p>
-                                    @else
-                                        <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->price }} </del>
-                                        </p>
-                                    @endif
-                                    <a class="add_cart" href="#">add to cart</a>
+                                        <a class="wsus__pro_name"
+                                            href="{{ route('product-details', $product->slug) }}">{{ $product->name }}</a>
+                                        @if (checkDiscount($product))
+                                            <p class="wsus__price">{{ $settings->currency_icon }}
+                                                {{ $product->offer_price }}
+                                                <del>{{ $settings->currency_icon }} {{ $product->price }}</del>
+                                            </p>
+                                        @else
+                                            <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->price }}
+                                                </del>
+                                            </p>
+                                        @endif
+                                        <a class="add_cart" href="{{ route('add-to-cart') }}">add to cart</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
+                </form>
             </div>
             <div class="mt-5">
                 @if ($flashSaleItems->hasPages())
@@ -136,8 +141,8 @@
         </div>
     </section>
     <!--============================
-                                                                                                                                                                                                                                                          DAILY DEALS DETAILS END
-                                                                                                                                                                                                                                                      ==============================-->
+                                                                                                                                                                                                                                                                          DAILY DEALS DETAILS END
+                                                                                                                                                                                                                                                                      ==============================-->
 @endsection
 
 @push('scripts')
