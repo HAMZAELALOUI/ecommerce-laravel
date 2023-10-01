@@ -59,10 +59,29 @@
                                     <del>{{ $settings->currency_icon }} {{ $product->price }}</del>
                                 </p>
                             @else
-                                <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->price }} </del>
+                                <p class="wsus__price">{{ $settings->currency_icon }} {{ $product->price }}
                                 </p>
                             @endif
-                            <a class="add_cart" href="#">add to cart</a>
+
+                            <form class="shopping__cart_form">
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                @foreach ($product->variant as $variant)
+                                    <select class="d-none" name="variants_item[]">
+                                        @foreach ($variant->productVariantItems as $productVariantItem)
+                                            <option {{ $productVariantItem->is_default == 1 ? 'selected' : '' }}
+                                                value="{{ $productVariantItem->id }}">
+                                                {{ $productVariantItem->name }}
+                                                ({{ $settings->currency_icon }}
+                                                {{ $productVariantItem->price }})
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+                                @endforeach
+                                <button class="add_cart" href="#" type="submit">add to cart</button>
+                                <input class="" type="hidden" min="1" max="100" value="1"
+                                    name="qty" />
+                            </form>
                         </div>
                     </div>
                 </div>
